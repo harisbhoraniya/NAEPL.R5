@@ -1,0 +1,133 @@
+import React from 'react';
+import Link from 'next/link';
+import { Phone, Mail, Globe, MapPin } from 'lucide-react';
+
+export const Footer: React.FC = () => {
+  return (
+    <footer className="bg-white border-t border-slate-200 py-12 sm:py-16 pb-8 text-slate-600">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-col">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[2fr_1fr_1fr] gap-8 md:gap-14 mb-10 md:mb-14">
+          {/* Column 1: Company Profile */}
+          <div className="sm:col-span-2 md:col-span-1">
+            <div className="mb-4 sm:mb-5">
+              <Link href="/">
+                <img 
+                  src="/assets/logo_naepl.webp?v=2" 
+                  alt="N Gandhi Advance Engineering Private Limited"
+                  width={250}
+                  height={40}
+                  className="h-9 sm:h-10 w-auto object-contain" 
+                />
+              </Link>
+            </div>
+            
+            <p className="text-[13.5px] leading-relaxed text-slate-500 max-w-[440px] mb-4 sm:mb-5">
+              The engineering division of N. Gandhi Group, N Gandhi Advance Engineering Private Limited (NAEPL), specialises in precision manufacturing and engineered industrial solutions. Its product portfolio includes cable management systems, electrical connectivity solutions, junction boxes and enclosures, CNC-machined components, and sheet metal press parts, serving diverse industrial sectors and customers across global markets.
+            </p>
+
+            <div className="flex flex-wrap items-center gap-2">
+              <Link 
+                href="/quality-certifications"
+                className="inline-flex items-center gap-2 py-1.5 px-3.5 rounded-full border border-slate-300 bg-slate-50 text-xs font-semibold text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 hover:border-emerald-300 transition-colors"
+              >
+                <span className="w-[7px] h-[7px] rounded-full bg-emerald-600" />
+                <span>ISO 9001:2015 Certified QMS</span>
+              </Link>
+              <Link
+                href="/quality-certifications"
+                className="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-full border border-slate-300 bg-slate-50 text-xs font-semibold text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 hover:border-emerald-300 transition-colors"
+              >
+                <span>D-U-N-S&reg; Registered</span>
+              </Link>
+            </div>
+          </div>
+
+          {/* Column 2: Pages Navigation */}
+          <div>
+            <h5 className="text-xs font-bold tracking-[0.12em] text-slate-900 uppercase mb-4 sm:mb-5">PAGES</h5>
+            <ul className="flex flex-col gap-2.5 sm:gap-3 text-[13.5px] text-slate-600">
+              <li>
+                <Link href="/" className="cursor-pointer transition-colors duration-200 hover:text-emerald-700 font-medium">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link href="/about-us" className="cursor-pointer transition-colors duration-200 hover:text-emerald-700 font-medium">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/products" className="cursor-pointer transition-colors duration-200 hover:text-emerald-700 font-medium">
+                  Products
+                </Link>
+              </li>
+              <li>
+                <Link href="/industry" className="cursor-pointer transition-colors duration-200 hover:text-emerald-700 font-medium">
+                  Industry
+                </Link>
+              </li>
+              <li>
+                <Link href="/quality-certifications" className="cursor-pointer transition-colors duration-200 hover:text-emerald-700 font-medium">
+                  Quality &amp; Certifications
+                </Link>
+              </li>
+              <li>
+                <Link href="/catalogue" className="cursor-pointer transition-colors duration-200 hover:text-emerald-700 font-medium">
+                  Catalogue
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="cursor-pointer transition-colors duration-200 hover:text-emerald-700 font-medium">
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 3: Contact Info */}
+          <div>
+            <h5 className="text-xs font-bold tracking-[0.12em] text-slate-900 uppercase mb-4 sm:mb-5">CONTACT</h5>
+            <ul className="flex flex-col gap-2.5 sm:gap-3 text-[13.5px] text-slate-600">
+              <li className="flex items-center gap-2.5">
+                <Phone size={14} className="text-emerald-700 shrink-0" />
+                <a href="tel:+912268380200" className="hover:text-emerald-700 transition-colors">
+                  +91 22-68380200
+                </a>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <Mail size={14} className="text-emerald-700 shrink-0" />
+                <a href="mailto:enquiryengg@ngandhi.com" className="hover:text-emerald-700 transition-colors">
+                  enquiryengg@ngandhi.com
+                </a>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <Globe size={14} className="text-emerald-700 shrink-0" />
+                <a href="https://naepl.r5advertising.com/" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-700 transition-colors">
+                  naepl.r5advertising.com
+                </a>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <MapPin size={14} className="text-emerald-700 shrink-0 mt-0.5" />
+                <span className="leading-snug text-[13px]">
+                  104, First Floor, C Wing, Marathon Futurex, NM Joshi Marg, Mafatlal Mill Compound, Lower Parel (E), Mumbai – 400013, Maharashtra, India
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-slate-100 pt-6 sm:pt-7 text-[12px] sm:text-[12.5px] text-slate-500 text-center sm:text-left">
+          <div>
+            © 2026 N Gandhi Advance Engineering Private Limited. All rights reserved.
+          </div>
+          <div className="text-slate-400">
+            Made in India
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
