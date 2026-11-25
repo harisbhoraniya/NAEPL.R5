@@ -162,7 +162,7 @@ const ProductDetailPage: React.FC = () => {
                   <div className="flex items-center justify-center gap-2 p-1.5 bg-slate-100 rounded-xl border border-slate-200 shadow-inner">
                     <button
                       type="button"
-                      onClick={() => handleFinishChange('uncoated')}
+                      onClick={() => setActiveFinish('uncoated')}
                       className={`flex-1 py-2.5 text-[12px] sm:text-[13px] font-bold tracking-wide uppercase rounded-lg transition-all cursor-pointer flex items-center justify-center ${
                         activeFinish === 'uncoated'
                           ? 'bg-[#004428] text-white shadow-md'
@@ -173,7 +173,7 @@ const ProductDetailPage: React.FC = () => {
                     </button>
                     <button
                       type="button"
-                      onClick={() => handleFinishChange('coated')}
+                      onClick={() => setActiveFinish('coated')}
                       className={`flex-1 py-2.5 text-[12px] sm:text-[13px] font-bold tracking-wide uppercase rounded-lg transition-all cursor-pointer flex items-center justify-center ${
                         activeFinish === 'coated'
                           ? 'bg-[#004428] text-white shadow-md'
