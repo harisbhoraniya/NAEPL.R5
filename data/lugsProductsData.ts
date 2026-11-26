@@ -8,6 +8,7 @@ export interface LugSizingRow {
   barrelLength?: string;
   totalLength?: string;
   extra?: string;
+  [key: string]: string | undefined;
 }
 
 export interface LugSizingTable {
@@ -242,7 +243,7 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
     category: 'COPPER CABLE LUGS',
     badge: 'ONE-HOLE · STANDARD BARREL',
     tagline: 'Standard copper cable lugs featuring a single mounting hole and crimping barrel for secure conductor termination in power distribution systems.',
-    description: 'NAEPL Copper One-Hole Standard Cable Lugs are precision manufactured from high-conductivity electrolytic copper (ETP 99.9% pure) and electro-tinned to prevent atmospheric corrosion. Engineered with an optimal barrel length and internal inspection hole to ensure full cable insertion, they provide low electrical contact resistance and superior mechanical strength for switchgear, transformers, and distribution panels.',
+    description: '',
     image: '/assets/lugx/copper_one_hole_standard.png',
     features: [
       "Precision manufactured to international standards for low electrical contact resistance.",
@@ -254,7 +255,7 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
     specs: {
       material: 'Electrolytic Copper (ETP 99.9% Pure)',
       surfaceFinish: 'Electro-Tinned (5–10 Microns)',
-      conductorRange: '1.5 mm² to 1000 mm²',
+      conductorRange: '1.5 mm² to 400 mm²',
       studRange: 'M4 to M20',
       voltageRating: 'Rated up to 33 kV',
       standards: 'IEC 61238-1 / BS 4579 / IS 1897',
@@ -893,7 +894,50 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
                     "palmWidth": "49",
                     "barrelLength": "25",
                     "totalLength": "112"
-          },
+          }
+        ]
+      }
+    ]
+  },
+  'copper-one-hole-long-barrel': {
+    id: 'copper-one-hole-long-barrel',
+    num: 2,
+    title: 'Copper One-Hole Long Barrel Cable Lugs',
+    category: 'COPPER CABLE LUGS',
+    badge: 'ONE-HOLE · LONG BARREL',
+    tagline: 'Extended crimping barrel and single-hole palm providing increased conductor insertion length and double crimping contact.',
+    description: '',
+    image: '/assets/lugx/copper_one_hole_long_barrel.png',
+    features: [
+      "Precision manufactured to international standards for low electrical contact resistance.",
+      "High purity conductor materials (ETP Copper 99.9% / EC Aluminium 99.5%) ensure maximum conductivity.",
+      "Electro-tinned surface finish prevents oxidation and galvanic corrosion over decades of service.",
+      "Clear cross-section (Sq.mm) and stud size embossed markings for error-free installation.",
+      "Tested for high short-circuit withstand currents, thermal shock, and cyclic mechanical vibrations."
+    ],
+    specs: {
+      material: 'Electrolytic Copper (ETP 99.9% Pure)',
+      surfaceFinish: 'Electro-Tinned (5–10 Microns)',
+      conductorRange: '6 mm² to 1000 mm²',
+      studRange: 'M8 to M20',
+      voltageRating: 'Rated up to 33 kV',
+      standards: 'IEC 61238-1 / BS 4579 / IS 1897',
+      barrelType: 'Extended Long Barrel with Inspection Hole',
+      operatingTemp: '-55°C to +155°C',
+    },
+    applications: [
+      "Industrial low & medium voltage power distribution boards",
+      "Transformer low-voltage and high-voltage bushing terminations",
+      "Air Circuit Breakers (ACB), Molded-Case Circuit Breakers (MCCB), and switchboards",
+      "Solar photovoltaic combiner boxes, inverter skids, and wind turbine towers",
+      "Heavy industrial motors, generators, pumps, and variable frequency drives (VFD)"
+    ],
+    tables: [
+      {
+        title: 'Technical Sizing Matrix & Dimensional Specifications',
+        subtitle: 'NAEPL certified catalog dimensions. Custom stud holes and palm widths manufactured upon request.',
+        headers: ["Part No.","Sq.mm","Stud","Hole ØE (mm)","Barrel ID ØA (mm)","Palm Width D (mm)","Barrel Length B (mm)","Total Length J (mm)"],
+        rows: [
           {
                     "code": "LX-CUL-0006-M08",
                     "sqmm": "6",
@@ -1183,50 +1227,7 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
                     "palmWidth": "25",
                     "barrelLength": "19",
                     "totalLength": "75"
-          }
-]
-      }
-    ]
-  },
-  'copper-one-hole-long-barrel': {
-    id: 'copper-one-hole-long-barrel',
-    num: 2,
-    title: 'Copper One-Hole Long Barrel Cable Lugs',
-    category: 'COPPER CABLE LUGS',
-    badge: 'ONE-HOLE · LONG BARREL',
-    tagline: 'Extended crimping barrel and single-hole palm providing increased conductor insertion length and double crimping contact.',
-    description: 'NAEPL Long Barrel Copper Lugs feature an elongated crimp barrel designed to accommodate double or multiple crimp compressions. This delivers enhanced pull-out resistance, maximized electrical contact surface, and superior thermal cycling endurance across heavy-duty industrial and utility feeder cables.',
-    image: '/assets/lugx/copper_one_hole_long_barrel.png',
-    features: [
-      "Precision manufactured to international standards for low electrical contact resistance.",
-      "High purity conductor materials (ETP Copper 99.9% / EC Aluminium 99.5%) ensure maximum conductivity.",
-      "Electro-tinned surface finish prevents oxidation and galvanic corrosion over decades of service.",
-      "Clear cross-section (Sq.mm) and stud size embossed markings for error-free installation.",
-      "Tested for high short-circuit withstand currents, thermal shock, and cyclic mechanical vibrations."
-],
-    specs: {
-      material: 'Electrolytic Copper (ETP 99.9% Pure)',
-      surfaceFinish: 'Electro-Tinned (5–10 Microns)',
-      conductorRange: '10 mm² to 1000 mm²',
-      studRange: 'M5 to M20',
-      voltageRating: 'Rated up to 33 kV',
-      standards: 'IEC 61238-1 / BS 4579 / IS 1897',
-      barrelType: 'Extended Long Barrel (Multi-Crimp Compatible)',
-      operatingTemp: '-55°C to +155°C',
-    },
-    applications: [
-      "Industrial low & medium voltage power distribution boards",
-      "Transformer low-voltage and high-voltage bushing terminations",
-      "Air Circuit Breakers (ACB), Molded-Case Circuit Breakers (MCCB), and switchboards",
-      "Solar photovoltaic combiner boxes, inverter skids, and wind turbine towers",
-      "Heavy industrial motors, generators, pumps, and variable frequency drives (VFD)"
-],
-    tables: [
-      {
-        title: 'Technical Sizing Matrix & Dimensional Specifications',
-        subtitle: 'NAEPL certified catalog dimensions. Custom stud holes and palm widths manufactured upon request.',
-        headers: ["Part No.","Sq.mm","Stud","Hole ØE (mm)","Barrel ID ØA (mm)","Palm Width D (mm)","Barrel Length B (mm)","Total Length J (mm)"],
-        rows: [
+          },
           {
                     "code": "LX-CUL-0120-M08",
                     "sqmm": "120",
@@ -1818,7 +1819,7 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
     category: 'COPPER CABLE LUGS',
     badge: 'ONE-HOLE · HEAVY DUTY',
     tagline: 'Heavy-duty copper cable lugs featuring a reinforced palm, single mounting hole, and robust barrel construction for demanding terminations.',
-    description: 'Designed for mission-critical power generation, offshore, and heavy industrial environments, NAEPL Heavy Duty Copper Cable Lugs incorporate reinforced palm thickness and heavy wall tube geometry. This design withstands severe short-circuit electromagnetic stresses, thermal shocks, and continuous vibration.',
+    description: '',
     image: '/assets/lugx/copper_one_hole_heavy_duty.png',
     features: [
       "Precision manufactured to international standards for low electrical contact resistance.",
@@ -1830,8 +1831,8 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
     specs: {
       material: 'Heavy-Duty Electrolytic Copper (ETP 99.9% Pure)',
       surfaceFinish: 'Electro-Tinned (Heavy Duty Tin Plating)',
-      conductorRange: '6 mm² to 1000 mm²',
-      studRange: 'M5 to M20',
+      conductorRange: '25 mm² to 630 mm²',
+      studRange: 'M6 to M20',
       voltageRating: 'Rated up to 33 kV',
       standards: 'IEC 61238-1 / BS 4579 / DIN 46235',
       barrelType: 'Heavy Wall Seamless Copper Tube',
@@ -2681,7 +2682,7 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
     category: 'COPPER CABLE LUGS',
     badge: 'ONE-HOLE · BELL MOUTH ENTRY',
     tagline: 'Flared bell-mouth barrel entrance facilitating easy conductor insertion, eliminating strand damage during flexible cable termination.',
-    description: 'NAEPL Bell Mouth Copper Lugs feature a smoothly contoured, flared entry funnel at the barrel base. This bell-mouth entry allows easy, rapid insertion of fine-stranded, flexible, or compacted cables (Class 5 & Class 6 conductors), eliminating strand splaying and preventing conductor shearing during crimping.',
+    description: '',
     image: '/assets/lugx/copper_one_hole_bell_mouth.png',
     features: [
       "Precision manufactured to international standards for low electrical contact resistance.",
@@ -2693,7 +2694,7 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
     specs: {
       material: 'Electrolytic Copper (ETP 99.9% Pure)',
       surfaceFinish: 'Electro-Tinned (5–10 Microns)',
-      conductorRange: '1.5 mm² to 1000 mm²',
+      conductorRange: '1.5 mm² to 240 mm²',
       studRange: 'M4 to M20',
       voltageRating: 'Rated up to 33 kV',
       standards: 'IEC 61238-1 / BS 4579 / IS 1897',
@@ -3614,7 +3615,7 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
     category: 'COPPER CABLE LUGS',
     badge: 'ONE-HOLE · NARROW PALM',
     tagline: 'Narrow-width palm and single mounting hole engineered for compact terminal arrangements and space-restricted circuit breakers.',
-    description: 'Designed specifically for molded-case circuit breakers (MCCB), miniature switchgear, and compact terminal blocks where standard palm widths cannot fit side-by-side. NAEPL Narrow Palm Lugs allow high-ampacity cable connections in tight spaces while maintaining standard electrical clearances.',
+    description: '',
     image: '/assets/lugx/copper_one_hole_narrow_palm.png',
     features: [
       "Precision manufactured to international standards for low electrical contact resistance.",
@@ -3805,296 +3806,6 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
                     "palmWidth": "42",
                     "barrelLength": "42",
                     "totalLength": "87"
-          },
-          {
-                    "code": "LX-CU2-HV-0025-M06",
-                    "sqmm": "25",
-                    "stud": "M6",
-                    "studHole": "6.5",
-                    "barrelId": "44.5",
-                    "palmWidth": "6.8",
-                    "barrelLength": "16",
-                    "totalLength": "123"
-          },
-          {
-                    "code": "LX-CU2-HV-0025-M08",
-                    "sqmm": "25",
-                    "stud": "M8",
-                    "studHole": "8.4",
-                    "barrelId": "44.5",
-                    "palmWidth": "6.8",
-                    "barrelLength": "16",
-                    "totalLength": "123"
-          },
-          {
-                    "code": "LX-CU2-HV-0025-M10",
-                    "sqmm": "25",
-                    "stud": "M10",
-                    "studHole": "10.5",
-                    "barrelId": "44.5",
-                    "palmWidth": "6.8",
-                    "barrelLength": "16",
-                    "totalLength": "123"
-          },
-          {
-                    "code": "LX-CU2-HV-0025-M12",
-                    "sqmm": "25",
-                    "stud": "M12",
-                    "studHole": "13",
-                    "barrelId": "44.5",
-                    "palmWidth": "6.8",
-                    "barrelLength": "18",
-                    "totalLength": "123"
-          },
-          {
-                    "code": "LX-CU2-HV-0035-M06",
-                    "sqmm": "35",
-                    "stud": "M6",
-                    "studHole": "6.5",
-                    "barrelId": "44.5",
-                    "palmWidth": "8.2",
-                    "barrelLength": "18",
-                    "totalLength": "124"
-          },
-          {
-                    "code": "LX-CU2-HV-0035-M08",
-                    "sqmm": "35",
-                    "stud": "M8",
-                    "studHole": "8.4",
-                    "barrelId": "44.5",
-                    "palmWidth": "8.2",
-                    "barrelLength": "18",
-                    "totalLength": "124"
-          },
-          {
-                    "code": "LX-CU2-HV-0035-M10",
-                    "sqmm": "35",
-                    "stud": "M10",
-                    "studHole": "10.5",
-                    "barrelId": "44.5",
-                    "palmWidth": "8.2",
-                    "barrelLength": "18",
-                    "totalLength": "124"
-          },
-          {
-                    "code": "LX-CU2-HV-0035-M12",
-                    "sqmm": "35",
-                    "stud": "M12",
-                    "studHole": "13",
-                    "barrelId": "44.5",
-                    "palmWidth": "8.2",
-                    "barrelLength": "18",
-                    "totalLength": "124"
-          },
-          {
-                    "code": "LX-CU2-HV-0035-M14",
-                    "sqmm": "35",
-                    "stud": "M14",
-                    "studHole": "14.5",
-                    "barrelId": "44.5",
-                    "palmWidth": "8.2",
-                    "barrelLength": "18",
-                    "totalLength": "124"
-          },
-          {
-                    "code": "LX-CU2-HV-0035-M16",
-                    "sqmm": "35",
-                    "stud": "M16",
-                    "studHole": "17",
-                    "barrelId": "44.5",
-                    "palmWidth": "8.2",
-                    "barrelLength": "18",
-                    "totalLength": "124"
-          },
-          {
-                    "code": "LX-CU2-HV-0050-M06",
-                    "sqmm": "50",
-                    "stud": "M6",
-                    "studHole": "6.8",
-                    "barrelId": "44.5",
-                    "palmWidth": "9.5",
-                    "barrelLength": "20",
-                    "totalLength": "124"
-          },
-          {
-                    "code": "LX-CU2-HV-0050-M08",
-                    "sqmm": "50",
-                    "stud": "M8",
-                    "studHole": "8.4",
-                    "barrelId": "44.5",
-                    "palmWidth": "9.5",
-                    "barrelLength": "20",
-                    "totalLength": "124"
-          },
-          {
-                    "code": "LX-CU2-HV-0050-M10",
-                    "sqmm": "50",
-                    "stud": "M10",
-                    "studHole": "10.5",
-                    "barrelId": "44.5",
-                    "palmWidth": "9.5",
-                    "barrelLength": "20",
-                    "totalLength": "124"
-          },
-          {
-                    "code": "LX-CU2-HV-0050-M12",
-                    "sqmm": "50",
-                    "stud": "M12",
-                    "studHole": "13",
-                    "barrelId": "44.5",
-                    "palmWidth": "9.5",
-                    "barrelLength": "20",
-                    "totalLength": "124"
-          },
-          {
-                    "code": "LX-CU2-HV-0050-M14",
-                    "sqmm": "50",
-                    "stud": "M14",
-                    "studHole": "14.5",
-                    "barrelId": "44.5",
-                    "palmWidth": "9.5",
-                    "barrelLength": "20",
-                    "totalLength": "124"
-          },
-          {
-                    "code": "LX-CU2-HV-0050-M16",
-                    "sqmm": "50",
-                    "stud": "M16",
-                    "studHole": "17",
-                    "barrelId": "44.5",
-                    "palmWidth": "9.5",
-                    "barrelLength": "20",
-                    "totalLength": "124"
-          },
-          {
-                    "code": "LX-CU2-HV-0070-M06",
-                    "sqmm": "70",
-                    "stud": "M6",
-                    "studHole": "6.5",
-                    "barrelId": "44.5",
-                    "palmWidth": "11",
-                    "barrelLength": "23",
-                    "totalLength": "126"
-          },
-          {
-                    "code": "LX-CU2-HV-0070-M08",
-                    "sqmm": "70",
-                    "stud": "M8",
-                    "studHole": "8.4",
-                    "barrelId": "44.5",
-                    "palmWidth": "11",
-                    "barrelLength": "23",
-                    "totalLength": "126"
-          },
-          {
-                    "code": "LX-CU2-HV-0070-M10",
-                    "sqmm": "70",
-                    "stud": "M10",
-                    "studHole": "10.5",
-                    "barrelId": "44.5",
-                    "palmWidth": "11",
-                    "barrelLength": "23",
-                    "totalLength": "126"
-          },
-          {
-                    "code": "LX-CU2-HV-0070-M12",
-                    "sqmm": "70",
-                    "stud": "M12",
-                    "studHole": "13",
-                    "barrelId": "44.5",
-                    "palmWidth": "11",
-                    "barrelLength": "23",
-                    "totalLength": "126"
-          },
-          {
-                    "code": "LX-CU2-HV-0070-M14",
-                    "sqmm": "70",
-                    "stud": "M14",
-                    "studHole": "14.5",
-                    "barrelId": "44.5",
-                    "palmWidth": "11",
-                    "barrelLength": "23",
-                    "totalLength": "126"
-          },
-          {
-                    "code": "LX-CU2-HV-0070-M16",
-                    "sqmm": "70",
-                    "stud": "M16",
-                    "studHole": "17",
-                    "barrelId": "44.5",
-                    "palmWidth": "11",
-                    "barrelLength": "23",
-                    "totalLength": "126"
-          },
-          {
-                    "code": "LX-CU2-HV-0095-M08",
-                    "sqmm": "95",
-                    "stud": "M8",
-                    "studHole": "8.4",
-                    "barrelId": "44.5",
-                    "palmWidth": "13.5",
-                    "barrelLength": "27",
-                    "totalLength": "138.5"
-          },
-          {
-                    "code": "LX-CU2-HV-0095-M10",
-                    "sqmm": "95",
-                    "stud": "M10",
-                    "studHole": "10.5",
-                    "barrelId": "44.5",
-                    "palmWidth": "13.5",
-                    "barrelLength": "27",
-                    "totalLength": "138.5"
-          },
-          {
-                    "code": "LX-CU2-HV-0095-M12",
-                    "sqmm": "95",
-                    "stud": "M12",
-                    "studHole": "13",
-                    "barrelId": "44.5",
-                    "palmWidth": "13.5",
-                    "barrelLength": "27",
-                    "totalLength": "138.5"
-          },
-          {
-                    "code": "LX-CU2-HV-0095-M14",
-                    "sqmm": "95",
-                    "stud": "M14",
-                    "studHole": "14.5",
-                    "barrelId": "44.5",
-                    "palmWidth": "13.5",
-                    "barrelLength": "27",
-                    "totalLength": "138.5"
-          },
-          {
-                    "code": "LX-CU2-HV-0095-M16",
-                    "sqmm": "95",
-                    "stud": "M16",
-                    "studHole": "17",
-                    "barrelId": "44.5",
-                    "palmWidth": "13.5",
-                    "barrelLength": "27",
-                    "totalLength": "138.5"
-          },
-          {
-                    "code": "LX-CU2-HV-0095-M18",
-                    "sqmm": "95",
-                    "stud": "M18",
-                    "studHole": "19",
-                    "barrelId": "44.5",
-                    "palmWidth": "13.5",
-                    "barrelLength": "27",
-                    "totalLength": "138.5"
-          },
-          {
-                    "code": "LX-CU2-HV-0120-M08",
-                    "sqmm": "120",
-                    "stud": "M8",
-                    "studHole": "8.4",
-                    "barrelId": "44.5",
-                    "palmWidth": "15",
-                    "barrelLength": "29",
-                    "totalLength": "144.5"
           }
 ]
       }
@@ -4107,7 +3818,7 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
     category: 'COPPER CABLE LUGS',
     badge: 'TWO-HOLE · HEAVY DUTY',
     tagline: 'Reinforced palm with dual mounting holes providing secure anti-twist bolted connections and mechanical stability.',
-    description: 'NAEPL Two-Hole Heavy Duty Lugs feature an extended palm with two fixing stud holes at standardized industry pitch. This dual-bolt arrangement eliminates lug rotation during bolt torquing and prevents loosening caused by operational vibration in busbars, transformers, and switchboards.',
+    description: '',
     image: '/assets/lugx/copper_two_hole_heavy_duty.png',
     features: [
       "Precision manufactured to international standards for low electrical contact resistance.",
@@ -4118,9 +3829,9 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
 ],
     specs: {
       material: 'Heavy-Duty Electrolytic Copper (ETP 99.9% Pure)',
-      surfaceFinish: 'Electro-Tinned (5–10 Microns)',
-      conductorRange: '16 mm² to 1000 mm²',
-      studRange: 'M6 to M16 (Standard Spacing)',
+      surfaceFinish: 'Electro-Tinned (Heavy Duty Tin Plating)',
+      conductorRange: '25 mm² to 630 mm²',
+      studRange: 'M6 to M20 (44.5 mm Hole Spacing)',
       voltageRating: 'Rated up to 33 kV',
       standards: 'IEC 61238-1 / BS 4579 / DIN 46235',
       barrelType: 'Two-Hole Anti-Rotation Heavy Palm',
@@ -4139,6 +3850,296 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
         subtitle: 'NAEPL certified catalog dimensions. Custom stud holes and palm widths manufactured upon request.',
         headers: ["Part No.","Sq.mm","Stud","Hole ØE (mm)","Hole Spacing (mm)","Barrel ID ØA (mm)","Palm Width D (mm)","Total Length J (mm)"],
         rows: [
+          {
+                    "code": "LX-CU2-HV-0025-M06",
+                    "sqmm": "25",
+                    "stud": "M6",
+                    "studHole": "6.5",
+                    "extra": "44.5",
+                    "barrelId": "6.8",
+                    "palmWidth": "16",
+                    "totalLength": "123"
+          },
+          {
+                    "code": "LX-CU2-HV-0025-M08",
+                    "sqmm": "25",
+                    "stud": "M8",
+                    "studHole": "8.4",
+                    "extra": "44.5",
+                    "barrelId": "6.8",
+                    "palmWidth": "16",
+                    "totalLength": "123"
+          },
+          {
+                    "code": "LX-CU2-HV-0025-M10",
+                    "sqmm": "25",
+                    "stud": "M10",
+                    "studHole": "10.5",
+                    "extra": "44.5",
+                    "barrelId": "6.8",
+                    "palmWidth": "16",
+                    "totalLength": "123"
+          },
+          {
+                    "code": "LX-CU2-HV-0025-M12",
+                    "sqmm": "25",
+                    "stud": "M12",
+                    "studHole": "13",
+                    "extra": "44.5",
+                    "barrelId": "6.8",
+                    "palmWidth": "18",
+                    "totalLength": "123"
+          },
+          {
+                    "code": "LX-CU2-HV-0035-M06",
+                    "sqmm": "35",
+                    "stud": "M6",
+                    "studHole": "6.5",
+                    "extra": "44.5",
+                    "barrelId": "8.2",
+                    "palmWidth": "18",
+                    "totalLength": "124"
+          },
+          {
+                    "code": "LX-CU2-HV-0035-M08",
+                    "sqmm": "35",
+                    "stud": "M8",
+                    "studHole": "8.4",
+                    "extra": "44.5",
+                    "barrelId": "8.2",
+                    "palmWidth": "18",
+                    "totalLength": "124"
+          },
+          {
+                    "code": "LX-CU2-HV-0035-M10",
+                    "sqmm": "35",
+                    "stud": "M10",
+                    "studHole": "10.5",
+                    "extra": "44.5",
+                    "barrelId": "8.2",
+                    "palmWidth": "18",
+                    "totalLength": "124"
+          },
+          {
+                    "code": "LX-CU2-HV-0035-M12",
+                    "sqmm": "35",
+                    "stud": "M12",
+                    "studHole": "13",
+                    "extra": "44.5",
+                    "barrelId": "8.2",
+                    "palmWidth": "18",
+                    "totalLength": "124"
+          },
+          {
+                    "code": "LX-CU2-HV-0035-M14",
+                    "sqmm": "35",
+                    "stud": "M14",
+                    "studHole": "14.5",
+                    "extra": "44.5",
+                    "barrelId": "8.2",
+                    "palmWidth": "18",
+                    "totalLength": "124"
+          },
+          {
+                    "code": "LX-CU2-HV-0035-M16",
+                    "sqmm": "35",
+                    "stud": "M16",
+                    "studHole": "17",
+                    "extra": "44.5",
+                    "barrelId": "8.2",
+                    "palmWidth": "18",
+                    "totalLength": "124"
+          },
+          {
+                    "code": "LX-CU2-HV-0050-M06",
+                    "sqmm": "50",
+                    "stud": "M6",
+                    "studHole": "6.8",
+                    "extra": "44.5",
+                    "barrelId": "9.5",
+                    "palmWidth": "20",
+                    "totalLength": "124"
+          },
+          {
+                    "code": "LX-CU2-HV-0050-M08",
+                    "sqmm": "50",
+                    "stud": "M8",
+                    "studHole": "8.4",
+                    "extra": "44.5",
+                    "barrelId": "9.5",
+                    "palmWidth": "20",
+                    "totalLength": "124"
+          },
+          {
+                    "code": "LX-CU2-HV-0050-M10",
+                    "sqmm": "50",
+                    "stud": "M10",
+                    "studHole": "10.5",
+                    "extra": "44.5",
+                    "barrelId": "9.5",
+                    "palmWidth": "20",
+                    "totalLength": "124"
+          },
+          {
+                    "code": "LX-CU2-HV-0050-M12",
+                    "sqmm": "50",
+                    "stud": "M12",
+                    "studHole": "13",
+                    "extra": "44.5",
+                    "barrelId": "9.5",
+                    "palmWidth": "20",
+                    "totalLength": "124"
+          },
+          {
+                    "code": "LX-CU2-HV-0050-M14",
+                    "sqmm": "50",
+                    "stud": "M14",
+                    "studHole": "14.5",
+                    "extra": "44.5",
+                    "barrelId": "9.5",
+                    "palmWidth": "20",
+                    "totalLength": "124"
+          },
+          {
+                    "code": "LX-CU2-HV-0050-M16",
+                    "sqmm": "50",
+                    "stud": "M16",
+                    "studHole": "17",
+                    "extra": "44.5",
+                    "barrelId": "9.5",
+                    "palmWidth": "20",
+                    "totalLength": "124"
+          },
+          {
+                    "code": "LX-CU2-HV-0070-M06",
+                    "sqmm": "70",
+                    "stud": "M6",
+                    "studHole": "6.5",
+                    "extra": "44.5",
+                    "barrelId": "11",
+                    "palmWidth": "23",
+                    "totalLength": "126"
+          },
+          {
+                    "code": "LX-CU2-HV-0070-M08",
+                    "sqmm": "70",
+                    "stud": "M8",
+                    "studHole": "8.4",
+                    "extra": "44.5",
+                    "barrelId": "11",
+                    "palmWidth": "23",
+                    "totalLength": "126"
+          },
+          {
+                    "code": "LX-CU2-HV-0070-M10",
+                    "sqmm": "70",
+                    "stud": "M10",
+                    "studHole": "10.5",
+                    "extra": "44.5",
+                    "barrelId": "11",
+                    "palmWidth": "23",
+                    "totalLength": "126"
+          },
+          {
+                    "code": "LX-CU2-HV-0070-M12",
+                    "sqmm": "70",
+                    "stud": "M12",
+                    "studHole": "13",
+                    "extra": "44.5",
+                    "barrelId": "11",
+                    "palmWidth": "23",
+                    "totalLength": "126"
+          },
+          {
+                    "code": "LX-CU2-HV-0070-M14",
+                    "sqmm": "70",
+                    "stud": "M14",
+                    "studHole": "14.5",
+                    "extra": "44.5",
+                    "barrelId": "11",
+                    "palmWidth": "23",
+                    "totalLength": "126"
+          },
+          {
+                    "code": "LX-CU2-HV-0070-M16",
+                    "sqmm": "70",
+                    "stud": "M16",
+                    "studHole": "17",
+                    "extra": "44.5",
+                    "barrelId": "11",
+                    "palmWidth": "23",
+                    "totalLength": "126"
+          },
+          {
+                    "code": "LX-CU2-HV-0095-M08",
+                    "sqmm": "95",
+                    "stud": "M8",
+                    "studHole": "8.4",
+                    "extra": "44.5",
+                    "barrelId": "13.5",
+                    "palmWidth": "27",
+                    "totalLength": "138.5"
+          },
+          {
+                    "code": "LX-CU2-HV-0095-M10",
+                    "sqmm": "95",
+                    "stud": "M10",
+                    "studHole": "10.5",
+                    "extra": "44.5",
+                    "barrelId": "13.5",
+                    "palmWidth": "27",
+                    "totalLength": "138.5"
+          },
+          {
+                    "code": "LX-CU2-HV-0095-M12",
+                    "sqmm": "95",
+                    "stud": "M12",
+                    "studHole": "13",
+                    "extra": "44.5",
+                    "barrelId": "13.5",
+                    "palmWidth": "27",
+                    "totalLength": "138.5"
+          },
+          {
+                    "code": "LX-CU2-HV-0095-M14",
+                    "sqmm": "95",
+                    "stud": "M14",
+                    "studHole": "14.5",
+                    "extra": "44.5",
+                    "barrelId": "13.5",
+                    "palmWidth": "27",
+                    "totalLength": "138.5"
+          },
+          {
+                    "code": "LX-CU2-HV-0095-M16",
+                    "sqmm": "95",
+                    "stud": "M16",
+                    "studHole": "17",
+                    "extra": "44.5",
+                    "barrelId": "13.5",
+                    "palmWidth": "27",
+                    "totalLength": "138.5"
+          },
+          {
+                    "code": "LX-CU2-HV-0095-M18",
+                    "sqmm": "95",
+                    "stud": "M18",
+                    "studHole": "19",
+                    "extra": "44.5",
+                    "barrelId": "13.5",
+                    "palmWidth": "27",
+                    "totalLength": "138.5"
+          },
+          {
+                    "code": "LX-CU2-HV-0120-M08",
+                    "sqmm": "120",
+                    "stud": "M8",
+                    "studHole": "8.4",
+                    "extra": "44.5",
+                    "barrelId": "15",
+                    "palmWidth": "29",
+                    "totalLength": "144.5"
+          },
           {
                     "code": "LX-CU2-HV-0120-M10",
                     "sqmm": "120",
@@ -4670,7 +4671,7 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
     category: 'COPPER CABLE LUGS',
     badge: 'TWO-HOLE · LONG BARREL',
     tagline: 'Extended crimping barrel and dual mounting holes for secure conductor crimping and stable bolted electrical connections.',
-    description: 'Combining an elongated crimp barrel for double crimping with a dual-hole mounting palm, NAEPL Two-Hole Long Barrel Lugs offer superior conductor retention and maximum current-carrying surface. Ideal for utility feeder lines and heavy industrial electrical distribution.',
+    description: '',
     image: '/assets/lugx/copper_two_hole_long_barrel.png',
     features: [
       "Precision manufactured to international standards for low electrical contact resistance.",
@@ -4683,7 +4684,7 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
       material: 'Electrolytic Copper (ETP 99.9% Pure)',
       surfaceFinish: 'Electro-Tinned (5–10 Microns)',
       conductorRange: '6 mm² to 1000 mm²',
-      studRange: 'M6 to M16 (Standard Spacing)',
+      studRange: 'M6 to M20 (44.5 mm Hole Spacing)',
       voltageRating: 'Rated up to 33 kV',
       standards: 'IEC 61238-1 / BS 4579 / IS 1897',
       barrelType: 'Extended Long Barrel with Dual-Hole Palm',
@@ -5643,7 +5644,7 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
     category: 'COPPER CABLE LUGS',
     badge: 'TWO-HOLE · LONG BARREL · HEAVY DUTY',
     tagline: 'Extended barrel, heavy-duty reinforced palm, and dual-hole mounting engineered for the most demanding power cable terminations.',
-    description: 'The premier heavy-duty copper lug in the NAEPL range. Built with extra-thick seamless copper tubing, an extended multi-crimp barrel, and a dual-stud anti-rotational palm to endure extreme fault currents, harsh outdoor conditions, and dynamic mechanical vibration.',
+    description: '',
     image: '/assets/lugx/copper_two_hole_long_barrel_heavy_duty.png',
     features: [
       "Precision manufactured to international standards for low electrical contact resistance.",
@@ -5655,8 +5656,8 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
     specs: {
       material: 'Heavy-Duty Electrolytic Copper (ETP 99.9% Pure)',
       surfaceFinish: 'Electro-Tinned (Heavy Duty Tin Plating)',
-      conductorRange: '10 mm² to 1000 mm²',
-      studRange: 'M5 to M16',
+      conductorRange: '10 mm² to 500 mm²',
+      studRange: 'M6 to M20 (44.5 mm Hole Spacing)',
       voltageRating: 'Rated up to 33 kV',
       standards: 'IEC 61238-1 / BS 4579 / DIN 46235',
       barrelType: 'Heavy Wall Long Barrel with Dual Fixing Holes',
@@ -6346,7 +6347,7 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
     category: 'COPPER CABLE LUGS',
     badge: 'FOUR-HOLE · TRANSFORMER BUSHING',
     tagline: 'Broad palm with four mounting holes and high-ampacity barrel designed for transformer terminals and high-current electrical assemblies.',
-    description: 'NAEPL Four-Hole Transformer Lugs feature an extra-wide rectangular palm with a 4-hole mounting grid specifically engineered to bolt onto power transformer LV/HV terminal flags and high-current copper busbars. Delivers high contact pressure and prevents hot spots in heavy industrial loads.',
+    description: '',
     image: '/assets/lugx/copper_four_hole_transformer.png',
     features: [
       "Precision manufactured to international standards for low electrical contact resistance.",
@@ -6499,7 +6500,7 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
     category: 'ALUMINIUM CRIMPING TERMINALS',
     badge: 'ALUMINIUM · ONE-HOLE STANDARD',
     tagline: 'Single-hole mounting palm and conductor barrel designed for dependable termination of aluminium cables in power distribution.',
-    description: 'Manufactured from high-purity electrical conductor (EC Grade) aluminium (99.5% pure). Pre-filled with neutral oxide-inhibiting joint compound and capped at the barrel entrance to prevent oxidation of aluminium conductor strands upon crimping.',
+    description: '',
     image: '/assets/lugx/aluminium_one_hole_standard.png',
     features: [
       "Precision manufactured to international standards for low electrical contact resistance.",
@@ -7002,7 +7003,7 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
     category: 'ALUMINIUM CRIMPING TERMINALS',
     badge: 'ALUMINIUM · TWO-HOLE STANDARD',
     tagline: 'Dual-hole mounting palm and crimping barrel providing secure bolted connections and anti-twist stability for aluminium conductors.',
-    description: 'NAEPL Aluminium Two-Hole Terminals are engineered for high-current aluminium power feeder lines requiring two-bolt anti-rotational stability. Features heavy wall EC-grade aluminium construction pre-filled with oxide-inhibiting paste for durable low-resistance connections.',
+    description: '',
     image: '/assets/lugx/aluminium_two_hole_standard.png',
     features: [
       "Precision manufactured to international standards for low electrical contact resistance.",
@@ -7015,7 +7016,7 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
       material: 'Electrical Conductor (EC Grade) Aluminium 99.5%',
       surfaceFinish: 'Natural / Pre-Filled with Joint Compound',
       conductorRange: '25 mm² to 630 mm²',
-      studRange: 'M8 to M16 (Dual Hole Pitch)',
+      studRange: 'M8 to M20 (45 mm Hole Pitch)',
       voltageRating: 'Rated up to 33 kV',
       standards: 'IEC 61238-1 / IS 5082 / DIN 46329',
       barrelType: 'Dual-Hole Palm with Sealed Barrel',
@@ -7175,7 +7176,7 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
     category: 'ALUMINIUM CRIMPING TERMINALS',
     badge: 'ALUMINIUM · LONG BARREL',
     tagline: 'Extended crimping barrel and single-hole palm for increased conductor insertion depth and dependable aluminium cable termination.',
-    description: 'Featuring an elongated crimping barrel that supports multiple hydraulic compressions, NAEPL Aluminium Long Barrel Terminals ensure maximum mechanical tensile retention and low contact resistance across utility power cables.',
+    description: '',
     image: '/assets/lugx/aluminium_one_hole_long_barrel.png',
     features: [
       "Precision manufactured to international standards for low electrical contact resistance.",
@@ -7368,7 +7369,7 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
     category: 'COPPER RING TERMINALS',
     badge: 'COPPER RING · OPEN & CLOSED SOLDERING',
     tagline: 'Open or closed barrel configurations and circular mounting tongues designed for soldered or crimped conductor termination.',
-    description: 'Precision-stamped from high-conductivity sheet copper and electro-tinned, NAEPL Soldering Type Ring Terminals provide versatile termination options for control panels, switchgear, and automotive/marine wiring where soldered joint integrity is specified.',
+    description: '',
     image: '/assets/lugx/copper_ring_soldering_type.png',
     features: [
       "Precision manufactured to international standards for low electrical contact resistance.",
@@ -7620,7 +7621,7 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
     category: 'BI-METALLIC TERMINALS',
     badge: 'BI-METALLIC · FRICTION WELDED',
     tagline: 'Manufactured using solid friction-welding technology joining copper and aluminium sections to eliminate galvanic corrosion.',
-    description: 'NAEPL Friction-Welded Bi-Metallic Terminals join a high-conductivity copper palm to an aluminium barrel using molecular-level friction welding. This eliminates electrolytic corrosion when connecting aluminium cables to copper switchgear busbars in substations and solar power plants.',
+    description: '',
     image: '/assets/lugx/bimetallic_friction_welded.png',
     features: [
       "Precision manufactured to international standards for low electrical contact resistance.",
@@ -7872,7 +7873,7 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
     category: 'BI-METALLIC TERMINALS',
     badge: 'BI-METALLIC · COPPER RING PALM',
     tagline: 'Copper mounting tongue and aluminium conductor barrel engineered for secure bolted connections and aluminium cable termination.',
-    description: 'Featuring a solid copper circular ring tongue joined to an aluminium conductor crimping barrel, these terminals enable safe connection of large aluminium power cables into standard copper-faced breaker terminals and distribution blocks.',
+    description: '',
     image: '/assets/lugx/bimetallic_copper_ring.png',
     features: [
       "Precision manufactured to international standards for low electrical contact resistance.",
@@ -7992,7 +7993,7 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
     category: 'COPPER CRIMPING TERMINALS',
     badge: 'PIN TERMINALS · BARE & INSULATED',
     tagline: 'Solid pin-shaped contact and crimping barrel in bare and insulated configurations for terminal blocks and electrical interfaces.',
-    description: 'Engineered for smooth insertion into European-style terminal blocks, screw clamp terminals, and relay sockets. Available in bare copper (LX-CPT), pre-insulated PVC (LX-CPI), and polyamide insulation (LX-CPD) to safeguard against accidental contact in control panels.',
+    description: '',
     image: '/assets/lugx/copper_crimping_pin.png',
     features: [
       "Precision manufactured to international standards for low electrical contact resistance.",
@@ -8185,7 +8186,7 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
     category: 'COPPER CRIMPING TERMINALS',
     badge: 'RING TERMINALS · NON-INSULATED',
     tagline: 'Non-insulated copper ring terminals featuring a circular mounting tongue and crimping barrel for secure screw or bolt fastening.',
-    description: 'NAEPL Non-Insulated Copper Ring Terminals feature a burr-free seamless or brazed seam barrel with internal serrations for maximum wire pull-out strength. Widely specified in control panels, transformer marshalling kiosks, and heavy industrial instrumentation wiring.',
+    description: '',
     image: '/assets/lugx/copper_crimping_ring.png',
     features: [
       "Precision manufactured to international standards for low electrical contact resistance.",
@@ -8197,8 +8198,8 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
     specs: {
       material: 'High-Conductivity Electrolytic Sheet Copper',
       surfaceFinish: 'Electro-Tinned (5–10 Microns)',
-      conductorRange: '1.5 mm² to 150 mm²',
-      studRange: 'M3 to M20',
+      conductorRange: '10 mm² to 150 mm²',
+      studRange: 'M5 to M20',
       voltageRating: 'Rated up to 1000V',
       standards: 'DIN 46234 / IEC 60760 / IS 1897',
       barrelType: 'Brazed Seam with Internal Serrations',
@@ -8708,7 +8709,7 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
     category: 'COPPER CRIMPING TERMINALS',
     badge: 'FORK TERMINALS · BARE & INSULATED',
     tagline: 'Open-ended mounting tongue and crimping barrel allowing fast screw-terminal connections without removing the fastener completely.',
-    description: 'Fork (spade) terminals engineered to slide effortlessly around terminal screws and studs, drastically reducing assembly and maintenance time. Available in bare copper and color-coded vinyl insulation to prevent short circuits in dense control wiring.',
+    description: '',
     image: '/assets/lugx/copper_crimping_fork.png',
     features: [
       "Precision manufactured to international standards for low electrical contact resistance.",
@@ -8861,7 +8862,7 @@ export const lugsProductsDetails: Record<string, LugProductDetail> = {
     category: 'COPPER CRIMPING TERMINALS',
     badge: 'RING TONGUE FORK · FLANGED & INSULATED',
     tagline: 'Specialized ring-tongue fork configuration designed for vibration-resistant screw terminal connections in industrial control wiring.',
-    description: 'Combining the rapid installation benefits of a spade terminal with the captive retention security of a ring terminal, NAEPL Flanged Ring Tongue Fork Terminals feature upturned tongue edges that grip beneath the screw head to prevent slipping out during extreme vibration.',
+    description: '',
     image: '/assets/lugx/copper_ring_tongue_fork.png',
     features: [
       "Precision manufactured to international standards for low electrical contact resistance.",

@@ -8,6 +8,7 @@ import {
   CheckCircle2, 
   ShieldCheck, 
   Zap, 
+  Layers, 
   FileText, 
   ArrowRight, 
   ChevronRight,
@@ -40,7 +41,9 @@ const CableCleatDetailPage: React.FC = () => {
         return (
           r.partNo.toLowerCase().includes(q) ||
           r.minDia.toLowerCase().includes(q) ||
-          r.midDia.toLowerCase().includes(q) ||
+          (r.midDia && r.midDia.toLowerCase().includes(q)) ||
+          (r.midDia1 && r.midDia1.toLowerCase().includes(q)) ||
+          (r.midDia2 && r.midDia2.toLowerCase().includes(q)) ||
           r.maxDia.toLowerCase().includes(q) ||
           r.height.toLowerCase().includes(q) ||
           r.width.toLowerCase().includes(q)
@@ -134,11 +137,13 @@ const CableCleatDetailPage: React.FC = () => {
               <div className="w-full grid grid-cols-2 gap-3 mt-4">
                 <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-center">
                   <p className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">Peak Current</p>
-                  <p className="text-[13px] sm:text-[14px] font-bold text-slate-900">Up to 180 kA</p>
+                  <p className="text-[13px] sm:text-[14px] font-bold text-slate-900">
+                    {product.slug === 'single-cleat' ? 'Up to 274 kA' : 'Up to 180 kA'}
+                  </p>
                 </div>
                 <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-center">
                   <p className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">Frame Material</p>
-                  <p className="text-[13px] sm:text-[14px] font-bold text-emerald-800">AISI 316L SS</p>
+                  <p className="text-[13px] sm:text-[14px] font-bold text-emerald-800">50 × 2.1mm 316L</p>
                 </div>
                 <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-center">
                   <p className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">Cushioning</p>
@@ -172,25 +177,26 @@ const CableCleatDetailPage: React.FC = () => {
                 {product.title}
               </h2>
 
-              <p className="text-[14.5px] sm:text-[15.5px] text-slate-600 leading-relaxed font-normal mb-6">
-                {product.description}
-              </p>
+              {product.description && (
+                <p className="text-[14.5px] sm:text-[15.5px] text-slate-600 leading-relaxed font-normal mb-6">
+                  {product.description}
+                </p>
+              )}
 
               {/* Key Features List */}
               <div className="mb-8">
-                <h3 className="text-base font-bold text-slate-900 uppercase tracking-wider text-[12.5px] mb-3.5 flex items-center gap-2">
-                  <ShieldCheck size={18} className="text-[#004428]" />
-                  <span>Key Engineering Features &amp; Advantages</span>
+                <h3 className="text-[14px] sm:text-[15px] font-bold uppercase tracking-wider text-slate-900 mb-4 flex items-center gap-2.5">
+                  <Layers size={18} className="text-[#004428]" />
+                  <span>KEY FEATURES &amp; ADVANTAGES</span>
                 </h3>
-
-                <div className="grid grid-cols-1 gap-2.5">
-                  {product.features.map((feat, idx) => (
-                    <div key={idx} className="flex items-start gap-2.5 text-[13.5px] sm:text-[14px] text-slate-700 leading-normal">
-                      <CheckCircle2 size={16} className="text-emerald-600 mt-0.5 shrink-0" />
-                      <span>{feat}</span>
-                    </div>
+                <ul className="space-y-3.5">
+                  {product.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start gap-3 text-[14px] sm:text-[14.5px] text-slate-700 leading-relaxed">
+                      <CheckCircle2 size={18} className="text-[#00663d] shrink-0 mt-0.5" />
+                      <span>{feature}</span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
 
               {/* Detailed Technical Specifications Grid */}
@@ -294,31 +300,45 @@ const CableCleatDetailPage: React.FC = () => {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {filteredRows.map((row, rIdx) => (
-                    <TableRow 
-                      key={rIdx}
-                      className="border-b border-slate-100 hover:bg-emerald-50/40 odd:bg-white even:bg-slate-50/50 transition-colors"
-                    >
-                      <TableCell className="font-bold text-slate-900 font-mono text-[12.5px] sm:text-[13px] py-2.5">
-                        <span className="text-[#004428]">{row.partNo}</span>
-                      </TableCell>
-                      <TableCell className="text-slate-800 font-medium text-[12.5px] sm:text-[13px] py-2.5">
-                        {row.minDia}
-                      </TableCell>
-                      <TableCell className="text-slate-700 text-[12.5px] sm:text-[13px] py-2.5">
-                        {row.midDia}
-                      </TableCell>
-                      <TableCell className="text-slate-700 text-[12.5px] sm:text-[13px] py-2.5">
-                        {row.maxDia}
-                      </TableCell>
-                      <TableCell className="text-slate-700 text-[12.5px] sm:text-[13px] py-2.5">
-                        {row.height}
-                      </TableCell>
-                      <TableCell className="text-slate-900 font-semibold text-[12.5px] sm:text-[13px] py-2.5">
-                        {row.width}
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                  {filteredRows.map((row, rIdx) => {
+                    const isSevenCol = currentTable.headers.length === 7;
+                    return (
+                      <TableRow 
+                        key={rIdx}
+                        className="border-b border-slate-100 hover:bg-emerald-50/40 odd:bg-white even:bg-slate-50/50 transition-colors"
+                      >
+                        <TableCell className="font-bold text-slate-900 font-mono text-[12.5px] sm:text-[13px] py-2.5">
+                          <span className="text-[#004428]">{row.partNo}</span>
+                        </TableCell>
+                        <TableCell className="text-slate-800 font-medium text-[12.5px] sm:text-[13px] py-2.5">
+                          {row.minDia}
+                        </TableCell>
+                        {isSevenCol ? (
+                          <>
+                            <TableCell className="text-slate-700 text-[12.5px] sm:text-[13px] py-2.5">
+                              {row.midDia1 ?? row.midDia ?? '/'}
+                            </TableCell>
+                            <TableCell className="text-slate-700 text-[12.5px] sm:text-[13px] py-2.5">
+                              {row.midDia2 ?? '/'}
+                            </TableCell>
+                          </>
+                        ) : (
+                          <TableCell className="text-slate-700 text-[12.5px] sm:text-[13px] py-2.5">
+                            {row.midDia ?? row.midDia1 ?? '-'}
+                          </TableCell>
+                        )}
+                        <TableCell className="text-slate-700 text-[12.5px] sm:text-[13px] py-2.5">
+                          {row.maxDia}
+                        </TableCell>
+                        <TableCell className="text-slate-700 text-[12.5px] sm:text-[13px] py-2.5">
+                          {row.height}
+                        </TableCell>
+                        <TableCell className="text-slate-900 font-semibold text-[12.5px] sm:text-[13px] py-2.5">
+                          {row.width}
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
                   {filteredRows.length === 0 && (
                     <TableRow>
                       <TableCell colSpan={currentTable?.headers.length || 6} className="text-center py-8 text-slate-500">

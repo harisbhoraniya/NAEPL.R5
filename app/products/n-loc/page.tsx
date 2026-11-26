@@ -71,35 +71,10 @@ const nlocProducts: ProductItem[] = [
     image: '/assets/nloc/zig_zag_hd_cable_tie_uncoated.jpg',
     link: '/products/n-loc/zig-zag-hd',
   },
-  {
-    id: 'marker-tag',
-    title: 'Cable Marker Tag',
-    category: 'IDENTIFICATION SYSTEMS',
-    badge: 'LASER & EMBOSSED',
-    image: '/assets/nloc/cable_marker_tag.webp',
-    link: '/products/n-loc/marker-tag',
-  },
-  {
-    id: 'marker-plates',
-    title: 'Marker Plates',
-    category: 'IDENTIFICATION SYSTEMS',
-    badge: 'STAINLESS STEEL PLATES',
-    image: '/assets/nloc/marker_plates.webp',
-    link: '/products/n-loc/marker-plates',
-  },
-  {
-    id: 'alphanumeric-characters',
-    title: 'Alphanumeric Characters',
-    category: 'IDENTIFICATION SYSTEMS',
-    badge: 'STAINLESS STEEL EMBOSSED',
-    image: '/assets/nloc/alphanumeric_characters.jpg',
-    link: '/products/n-loc/alphanumeric-characters',
-  },
 ];
 
 const NLocPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<'all' | 'cable-ties' | 'identification'>('all');
 
   const [productTypes, setProductTypes] = useState<Record<string, 'coated' | 'uncoated'>>({
     'roller-ball': 'uncoated',
@@ -297,42 +272,11 @@ const NLocPage: React.FC = () => {
           </h2>
 
           {/* Search & Filter Bar */}
-          <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 mb-8 bg-slate-50 p-3 sm:p-4 rounded-2xl border border-slate-200 shadow-sm">
-            {/* Filter Tabs */}
-            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0">
-              <button
-                type="button"
-                onClick={() => setSelectedCategory('all')}
-                className={`px-3.5 py-2 rounded-xl text-[12px] sm:text-[13px] font-bold uppercase tracking-wider transition-all whitespace-nowrap cursor-pointer ${
-                  selectedCategory === 'all'
-                    ? 'bg-[#004428] text-white shadow-sm'
-                    : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
-                }`}
-              >
-                All Products ({nlocProducts.length})
-              </button>
-              <button
-                type="button"
-                onClick={() => setSelectedCategory('cable-ties')}
-                className={`px-3.5 py-2 rounded-xl text-[12px] sm:text-[13px] font-bold uppercase tracking-wider transition-all whitespace-nowrap cursor-pointer ${
-                  selectedCategory === 'cable-ties'
-                    ? 'bg-[#004428] text-white shadow-sm'
-                    : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
-                }`}
-              >
-                Cable Ties (6)
-              </button>
-              <button
-                type="button"
-                onClick={() => setSelectedCategory('identification')}
-                className={`px-3.5 py-2 rounded-xl text-[12px] sm:text-[13px] font-bold uppercase tracking-wider transition-all whitespace-nowrap cursor-pointer ${
-                  selectedCategory === 'identification'
-                    ? 'bg-[#004428] text-white shadow-sm'
-                    : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
-                }`}
-              >
-                Identification &amp; Tags (3)
-              </button>
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-8 bg-slate-50 p-3 sm:p-4 rounded-2xl border border-slate-200 shadow-sm">
+            <div className="flex items-center gap-2 px-1">
+              <span className="text-[13px] sm:text-[14px] font-bold text-slate-800 uppercase tracking-wider">
+                Cable Ties Series ({nlocProducts.length})
+              </span>
             </div>
 
             {/* Quick Search Input */}
@@ -342,7 +286,7 @@ const NLocPage: React.FC = () => {
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search products (e.g. Roller, Ladder)..."
+                placeholder="Search cable ties (e.g. Roller, Ladder)..."
                 className="w-full pl-10 pr-9 py-2 bg-white border border-slate-200 rounded-xl text-[13px] text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#004428]/20 focus:border-[#004428] transition-all"
               />
               {searchTerm && (
@@ -360,8 +304,6 @@ const NLocPage: React.FC = () => {
           <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
             {(() => {
               const filteredProducts = nlocProducts.filter((item) => {
-                if (selectedCategory === 'cable-ties' && item.category !== 'STAINLESS STEEL CABLE TIES') return false;
-                if (selectedCategory === 'identification' && item.category !== 'IDENTIFICATION SYSTEMS') return false;
                 if (searchTerm.trim()) {
                   const q = searchTerm.toLowerCase();
                   return (
@@ -377,10 +319,10 @@ const NLocPage: React.FC = () => {
                 return (
                   <div className="w-full text-center py-16 px-4 bg-slate-50 rounded-2xl border border-slate-200 my-4">
                     <p className="text-base font-semibold text-slate-800 mb-1">No products found</p>
-                    <p className="text-[13px] text-slate-500 mb-4">No cable ties or identification systems match "{searchTerm}"</p>
+                    <p className="text-[13px] text-slate-500 mb-4">No cable ties match "{searchTerm}"</p>
                     <button
                       type="button"
-                      onClick={() => { setSearchTerm(''); setSelectedCategory('all'); }}
+                      onClick={() => setSearchTerm('')}
                       className="px-4 py-2 bg-[#004428] text-white font-medium text-[13px] rounded-xl hover:bg-[#00331e] transition-all cursor-pointer"
                     >
                       Reset filters

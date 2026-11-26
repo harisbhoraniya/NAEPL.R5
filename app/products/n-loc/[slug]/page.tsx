@@ -36,7 +36,7 @@ const ProductDetailPage: React.FC = () => {
 
   const [activeFinish, setActiveFinish] = useState<'uncoated' | 'coated'>('uncoated');
 
-  const hasCoatedOption = Boolean(product.images.coated);
+  const hasCoatedOption = Boolean(product.images.coated || product.tables.some((t) => t.finishType === 'coated'));
 
   // Separate tables into Uncoated and Coated for stacked layout
   const uncoatedTables = product.tables.filter(
@@ -86,7 +86,9 @@ const ProductDetailPage: React.FC = () => {
             <ChevronRight size={14} className="text-white/40" />
             <Link href="/products" className="hover:text-emerald-400 transition-colors">Products</Link>
             <ChevronRight size={14} className="text-white/40" />
-            <Link href="/products/n-loc" className="hover:text-emerald-400 transition-colors">Stainless Steel Cable Ties</Link>
+            <Link href={product.category === 'IDENTIFICATION SYSTEMS' ? '/products/cable-marker-tags' : '/products/n-loc'} className="hover:text-emerald-400 transition-colors">
+              {product.category === 'IDENTIFICATION SYSTEMS' ? 'Cable Marker Tag & Identification' : 'Stainless Steel Cable Ties'}
+            </Link>
             <ChevronRight size={14} className="text-white/40" />
             <span className="text-emerald-300 font-semibold truncate">{product.title}</span>
           </nav>
@@ -108,11 +110,11 @@ const ProductDetailPage: React.FC = () => {
 
             <div className="flex flex-wrap items-center gap-3">
               <Link
-                href="/products/n-loc"
+                href={product.category === 'IDENTIFICATION SYSTEMS' ? '/products/cable-marker-tags' : '/products/n-loc'}
                 className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-medium px-4 py-2.5 rounded-xl text-[13px] transition-all border border-white/10"
               >
                 <ArrowLeft size={16} />
-                <span>All Cable Ties</span>
+                <span>{product.category === 'IDENTIFICATION SYSTEMS' ? 'All Marker Tags Range' : 'All Cable Ties Range'}</span>
               </Link>
 
               <Link
@@ -249,9 +251,7 @@ const ProductDetailPage: React.FC = () => {
                 Engineered for High-Tensile Reliability in Demanding Environments
               </h2>
 
-              <p className="text-[14.5px] sm:text-[15.5px] leading-relaxed text-slate-700 mb-6">
-                {product.description}
-              </p>
+
 
               {/* Key Features List */}
               <div className="mb-8">
@@ -276,14 +276,15 @@ const ProductDetailPage: React.FC = () => {
       </section>
 
       {/* ── 3. Technical Sizing & Part Numbers (Strictly filtered by Uncoated / Coated) ── */}
+      {product.tables && product.tables.length > 0 && (
       <section className="py-10 sm:py-14 bg-[#f8fafc] border-y border-slate-200" id="specifications">
         <div className="max-w-[980px] mx-auto px-4 sm:px-6">
 
           {/* ═══════════════════════════════════════════════════════════════ */}
-          {/* TABLE 1 (UPAR): UNCOATED SPECIFICATIONS TABLE                   */}
+          {/* TABLE 1: UNCOATED SPECIFICATIONS TABLE                          */}
           {/* ═══════════════════════════════════════════════════════════════ */}
-          {activeUncoatedTable && (
-            <div className="bg-white border border-emerald-900/15 rounded-2xl shadow-sm overflow-hidden mb-8">
+          {(activeFinish === 'uncoated' || !hasCoatedOption) && activeUncoatedTable && (
+            <div className="bg-white border border-emerald-900/15 rounded-2xl shadow-sm overflow-hidden">
               <div className="px-5 py-3 bg-emerald-50/70 border-b border-emerald-900/10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
                 <div>
                   <h3 className="text-[17px] font-bold text-slate-900 tracking-tight">
@@ -301,7 +302,7 @@ const ProductDetailPage: React.FC = () => {
                   {uncoatedTables.length > 1 && (
                     <div className="flex items-center gap-1.5 p-1 bg-white border border-emerald-200/80 rounded-xl shadow-2xs">
                       {uncoatedTables.map((tbl, idx) => {
-                        const widthLabel = tbl.title.split('–')[1] || tbl.title.split('-')[1] || `Width ${idx + 1}`;
+                        const widthLabel = tbl.shortTitle || tbl.title.split('–')[1] || tbl.title.split('-')[1] || `Option ${idx + 1}`;
                         return (
                           <button
                             key={idx}
@@ -348,24 +349,23 @@ const ProductDetailPage: React.FC = () => {
                 <Table>
                   <TableHeader className="bg-[#004428]">
                     <TableRow className="border-b border-[#003820] hover:bg-[#004428]">
-                      <TableHead className="font-bold text-white text-[12px] uppercase tracking-wider py-2.5 px-4 text-center">
-                        Part No.
-                      </TableHead>
-                      <TableHead className="font-bold text-emerald-100 text-[12px] uppercase tracking-wider py-2.5 px-3.5 text-center">
-                        Width (mm)
-                      </TableHead>
-                      <TableHead className="font-bold text-emerald-100 text-[12px] uppercase tracking-wider py-2.5 px-3.5 text-center">
-                        Length (mm)
-                      </TableHead>
-                      <TableHead className="font-bold text-emerald-100 text-[12px] uppercase tracking-wider py-2.5 px-3.5 text-center">
-                        Thickness (mm)
-                      </TableHead>
-                      <TableHead className="font-bold text-emerald-100 text-[12px] uppercase tracking-wider py-2.5 px-3.5 text-center">
-                        Max Bundle Dia (mm)
-                      </TableHead>
-                      <TableHead className="font-bold text-emerald-100 text-[12px] uppercase tracking-wider py-2.5 px-4 text-center">
-                        Min. Loop Tensile (N)
-                      </TableHead>
+                      {(activeUncoatedTable.columnHeaders || [
+                        'Part No.',
+                        'Width (mm)',
+                        'Length (mm)',
+                        'Thickness (mm)',
+                        'Max Bundle Dia (mm)',
+                        'Min. Loop Tensile (N)',
+                      ]).map((headerText, hIdx) => (
+                        <TableHead 
+                          key={hIdx} 
+                          className={`font-bold text-[12px] uppercase tracking-wider py-2.5 text-center ${
+                            hIdx === 0 ? 'text-white px-4' : 'text-emerald-100 px-3.5'
+                          }`}
+                        >
+                          {headerText}
+                        </TableHead>
+                      ))}
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -434,9 +434,9 @@ const ProductDetailPage: React.FC = () => {
           )}
 
           {/* ═══════════════════════════════════════════════════════════════ */}
-          {/* TABLE 2 (NICHE): COATED SPECIFICATIONS TABLE                     */}
+          {/* TABLE 2: COATED SPECIFICATIONS TABLE                            */}
           {/* ═══════════════════════════════════════════════════════════════ */}
-          {hasCoatedOption && activeCoatedTable && (
+          {activeFinish === 'coated' && hasCoatedOption && activeCoatedTable && (
             <div className="bg-white border border-emerald-900/15 rounded-2xl shadow-sm overflow-hidden">
               <div className="px-5 py-3 bg-emerald-50/70 border-b border-emerald-900/10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
                 <div>
@@ -455,7 +455,7 @@ const ProductDetailPage: React.FC = () => {
                   {coatedTables.length > 1 && (
                     <div className="flex items-center gap-1.5 p-1 bg-white border border-emerald-200/80 rounded-xl shadow-2xs">
                       {coatedTables.map((tbl, idx) => {
-                        const widthLabel = tbl.title.split('–')[1] || tbl.title.split('-')[1] || `Width ${idx + 1}`;
+                        const widthLabel = tbl.shortTitle || tbl.title.split('–')[1] || tbl.title.split('-')[1] || `Option ${idx + 1}`;
                         return (
                           <button
                             key={idx}
@@ -502,24 +502,23 @@ const ProductDetailPage: React.FC = () => {
                 <Table>
                   <TableHeader className="bg-[#004428]">
                     <TableRow className="border-b border-[#003820] hover:bg-[#004428]">
-                      <TableHead className="font-bold text-white text-[12px] uppercase tracking-wider py-2.5 px-4 text-center">
-                        Part No.
-                      </TableHead>
-                      <TableHead className="font-bold text-emerald-100 text-[12px] uppercase tracking-wider py-2.5 px-3.5 text-center">
-                        Width (mm)
-                      </TableHead>
-                      <TableHead className="font-bold text-emerald-100 text-[12px] uppercase tracking-wider py-2.5 px-3.5 text-center">
-                        Length (mm)
-                      </TableHead>
-                      <TableHead className="font-bold text-emerald-100 text-[12px] uppercase tracking-wider py-2.5 px-3.5 text-center">
-                        Thickness (mm)
-                      </TableHead>
-                      <TableHead className="font-bold text-emerald-100 text-[12px] uppercase tracking-wider py-2.5 px-3.5 text-center">
-                        Max Bundle Dia (mm)
-                      </TableHead>
-                      <TableHead className="font-bold text-emerald-100 text-[12px] uppercase tracking-wider py-2.5 px-4 text-center">
-                        Min. Loop Tensile (N)
-                      </TableHead>
+                      {(activeCoatedTable.columnHeaders || [
+                        'Part No.',
+                        'Width (mm)',
+                        'Length (mm)',
+                        'Thickness (mm)',
+                        'Max Bundle Dia (mm)',
+                        'Min. Loop Tensile (N)',
+                      ]).map((headerText, hIdx) => (
+                        <TableHead 
+                          key={hIdx} 
+                          className={`font-bold text-[12px] uppercase tracking-wider py-2.5 text-center ${
+                            hIdx === 0 ? 'text-white px-4' : 'text-emerald-100 px-3.5'
+                          }`}
+                        >
+                          {headerText}
+                        </TableHead>
+                      ))}
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -603,11 +602,11 @@ const ProductDetailPage: React.FC = () => {
 
             <div className="flex flex-wrap items-center justify-center gap-3 shrink-0 w-full md:w-auto">
               <Link
-                href="/products/n-loc"
+                href={product.category === 'IDENTIFICATION SYSTEMS' ? '/products/n-loc/carrier-strips' : '/products/n-loc'}
                 className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#1e2420] hover:bg-[#2b3530] text-white/95 font-medium text-[13px] transition-all border border-white/15"
               >
                 <ArrowLeft size={15} />
-                <span>All Cable Ties</span>
+                <span>{product.category === 'IDENTIFICATION SYSTEMS' ? 'Cable Marker Tag & Identification' : 'All Cable Ties'}</span>
               </Link>
               <Link
                 href={`/contact?subject=RFQ%20for%20${encodeURIComponent(product.title)}`}
@@ -620,6 +619,7 @@ const ProductDetailPage: React.FC = () => {
           </div>
         </div>
       </section>
+      )}
 
       {/* ── 4. Technical Support & RFQ Banner ── */}
       <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-[#004428] via-[#00331e] to-[#0a110e] text-white">
@@ -670,10 +670,10 @@ const ProductDetailPage: React.FC = () => {
                 </Link>
 
                 <Link
-                  href="/products/n-loc"
+                  href={product.category === 'IDENTIFICATION SYSTEMS' ? '/products/cable-marker-tags' : '/products/n-loc'}
                   className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 text-white font-medium px-6 py-3.5 rounded-xl text-[13px] sm:text-[14px] transition-all border border-white/15"
                 >
-                  <span>Back to N-LOC Series</span>
+                  <span>{product.category === 'IDENTIFICATION SYSTEMS' ? 'Back to Marker Tags Range' : 'Back to N-LOC Series'}</span>
                 </Link>
               </div>
             </div>

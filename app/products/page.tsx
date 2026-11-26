@@ -26,6 +26,16 @@ const productCatalog: ProductItem[] = [
     desc: 'High-strength self-locking, ladder, spring type and releasable stainless steel cable ties in SS 304 & 316, engineered for secure fastening and reliable performance in demanding environments.',
     image: '/assets/featured_products/featured_nloc.webp',
     link: '/products/n-loc',
+  },
+  {
+    id: 'cable-marker-tags',
+    title: 'Cable Marker Tags & Identification Systems',
+    brandTag: 'N-LOC Series',
+    category: 'IDENTIFICATION SYSTEMS',
+    badge: 'CARRIER STRIPS & MARKER PLATES',
+    desc: 'Stainless steel cable marker tags, modular carrier strips, and raised alphanumeric characters engineered for permanent asset identification in harsh industrial environments.',
+    image: '/assets/nloc/cable_marker_tag.webp',
+    link: '/products/cable-marker-tags',
   },  
   {
     id: 'cable-cleats',

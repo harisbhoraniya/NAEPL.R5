@@ -7,7 +7,6 @@ import {
   ChevronDown,
   Menu,
   X,
-  ArrowRight,
   PhoneCall,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -42,10 +41,9 @@ const cableTieProducts: ProductSubItem[] = [
 
 // 02. Cable Marker Tags & Identification
 const cableMarkerTagProducts: ProductSubItem[] = [
-  { id: 'marker-tag', title: 'Cable Marker Tags', path: '/products/n-loc/marker-tag' },
-  { id: 'carrier-strips', title: 'Carrier Strips (Coated & Uncoated)', path: '/products/n-loc/marker-tag' },
-  { id: 'alphanumeric-characters', title: 'Alphanumeric Characters', path: '/products/n-loc/alphanumeric-characters' },
+  { id: 'carrier-strips', title: 'Carrier Strips (Coated & Uncoated)', path: '/products/n-loc/carrier-strips' },
   { id: 'marker-plates', title: 'Marker Plates & Custom Tags', path: '/products/n-loc/marker-plates' },
+  { id: 'alphanumeric-characters', title: 'Alphanumeric Characters', path: '/products/n-loc/alphanumeric-characters' },
 ];
 
 // 03. Cable Cleats
@@ -79,11 +77,26 @@ const lugProducts: ProductSubItem[] = [
 
 // 05. Electrical Enclosures & Junction Boxes
 const junctionBoxProducts: ProductSubItem[] = [
-  { id: 'aluminium-enclosure', title: 'Aluminium Die Cast Enclosure', path: '/products/link-box#aluminium-enclosure' },
-  { id: 'aluminium-terminal', title: 'Aluminium Junction Box', path: '/products/link-box#aluminium-terminal' },
-  { id: 'mild-steel', title: 'Mild Steel Junction Box', path: '/products/link-box#mild-steel' },
-  { id: 'stainless-steel', title: 'Stainless Steel Junction Box', path: '/products/link-box#stainless-steel' },
-  { id: 'push-button', title: 'SS Push Button Panel', path: '/products/link-box#stainless-steel' },
+  { id: 'aluminium-die-cast', title: 'Aluminium Die Cast Enclosures', path: '/products/link-box/aluminium-die-cast' },
+  { id: 'stainless-steel', title: 'Stainless Steel Enclosures', path: '/products/link-box/stainless-steel' },
+  { id: 'mild-steel', title: 'Mild Steel Junction Boxes', path: '/products/link-box/mild-steel' },
+  { id: 'push-button', title: 'SS Push Button Panels', path: '/products/link-box/push-button' },
+];
+
+// 06. CNC Machined Components
+const cncProducts: ProductSubItem[] = [
+  { id: 'copper-machined', title: 'Copper Machined Components', path: '/products/cnc-machine-component/copper-machined-components' },
+  { id: 'stainless-steel-cnc', title: 'Stainless Steel CNC Components', path: '/products/cnc-machine-component/stainless-steel-cnc-components' },
+  { id: 'aluminium-machined', title: 'Aluminium Machined Components', path: '/products/cnc-machine-component/aluminium-machined-components' },
+  { id: 'custom-alloy-cnc', title: 'Chrome Steel & Alloy Parts', path: '/products/cnc-machine-component/custom-alloy-cnc-parts' },
+];
+
+// 07. Sheet Metal Press Parts & Banding
+const sheetMetalProducts: ProductSubItem[] = [
+  { id: 'sheet-metal-press-parts', title: 'Press Parts', path: '/products/sheet-metal-press-parts/sheet-metal-press-parts' },
+  { id: 'stainless-steel-banding', title: 'Stainless Steel Banding', path: '/products/sheet-metal-press-parts/stainless-steel-banding' },
+  { id: 'pre-cut-straps-buckles', title: 'Pre-Cut Straps & Buckles', path: '/products/sheet-metal-press-parts/pre-cut-straps-buckles' },
+  { id: 'sign-mounting-brackets', title: 'Sign Mounting Brackets', path: '/products/sheet-metal-press-parts/sign-mounting-brackets' },
 ];
 
 export const Navbar: React.FC = () => {
@@ -272,19 +285,19 @@ export const Navbar: React.FC = () => {
                   <DropdownMenuSubTrigger
                     onClick={() => {
                       setDropdownOpen(false);
-                      router.push('/products/n-loc/marker-tag');
+                      router.push('/products/cable-marker-tags');
                     }}
                     className="cursor-pointer text-[13.5px] font-medium py-2 px-3 rounded-lg text-slate-800 bg-white hover:bg-emerald-50 hover:text-emerald-900 focus:bg-emerald-50 focus:text-emerald-900 data-[state=open]:bg-emerald-50 data-[state=open]:text-emerald-900 transition-colors"
                   >
                     <Link
-                      href="/products/n-loc/marker-tag"
+                      href="/products/cable-marker-tags"
                       onClick={(e) => {
                         e.stopPropagation();
                         setDropdownOpen(false);
                       }}
                       className="flex-1 text-left text-inherit"
                     >
-                      Cable Marker Tags &amp; ID
+                      Cable Marker Tag &amp; Identification
                     </Link>
                   </DropdownMenuSubTrigger>
                   <DropdownMenuSubContent
@@ -415,27 +428,79 @@ export const Navbar: React.FC = () => {
                   </DropdownMenuSubContent>
                 </DropdownMenuSub>
 
-                {/* 6. CNC Machined Components (Direct Item) */}
-                <DropdownMenuItem
-                  asChild
-                  className="cursor-pointer text-[13.5px] font-medium py-2 px-3 text-slate-800 bg-white hover:bg-emerald-50 hover:text-emerald-900 focus:bg-emerald-50 focus:text-emerald-900 rounded-lg transition-colors"
-                >
-                  <Link href="/products/cnc-machine-component" className="flex items-center justify-between w-full">
-                    <span>CNC Machined Components</span>
-                    <ArrowRight className="size-3.5 text-slate-400 ml-auto" />
-                  </Link>
-                </DropdownMenuItem>
+                {/* 6. CNC Machined Components (With Sub-Dropdown) */}
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger
+                    onClick={() => {
+                      setDropdownOpen(false);
+                      router.push('/products/cnc-machine-component');
+                    }}
+                    className="cursor-pointer text-[13.5px] font-medium py-2 px-3 rounded-lg text-slate-800 bg-white hover:bg-emerald-50 hover:text-emerald-900 focus:bg-emerald-50 focus:text-emerald-900 data-[state=open]:bg-emerald-50 data-[state=open]:text-emerald-900 transition-colors"
+                  >
+                    <Link
+                      href="/products/cnc-machine-component"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setDropdownOpen(false);
+                      }}
+                      className="flex-1 text-left text-inherit"
+                    >
+                      CNC Machined Components
+                    </Link>
+                  </DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent
+                    className="w-72 rounded-xl border border-slate-200 bg-white p-1.5 text-slate-800 shadow-xl"
+                    onMouseEnter={handleDropdownEnter}
+                    onMouseLeave={handleDropdownLeave}
+                  >
+                    {cncProducts.map((item) => (
+                      <DropdownMenuItem
+                        key={item.id}
+                        asChild
+                        className="cursor-pointer text-[13px] font-medium py-1.5 px-3 text-slate-700 bg-white hover:bg-emerald-50 hover:text-emerald-900 focus:bg-emerald-50 focus:text-emerald-900 rounded-md transition-colors"
+                      >
+                        <Link href={item.path}>{item.title}</Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
 
-                {/* 7. Sheet Metal Press Parts & Banding (Direct Item) */}
-                <DropdownMenuItem
-                  asChild
-                  className="cursor-pointer text-[13.5px] font-medium py-2 px-3 text-slate-800 bg-white hover:bg-emerald-50 hover:text-emerald-900 focus:bg-emerald-50 focus:text-emerald-900 rounded-lg transition-colors"
-                >
-                  <Link href="/products/sheet-metal-press-parts" className="flex items-center justify-between w-full">
-                    <span>Sheet Metal Press Parts &amp; Banding</span>
-                    <ArrowRight className="size-3.5 text-slate-400 ml-auto" />
-                  </Link>
-                </DropdownMenuItem>
+                {/* 7. Sheet Metal Press Parts & Banding (With Sub-Dropdown) */}
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger
+                    onClick={() => {
+                      setDropdownOpen(false);
+                      router.push('/products/sheet-metal-press-parts');
+                    }}
+                    className="cursor-pointer text-[13.5px] font-medium py-2 px-3 rounded-lg text-slate-800 bg-white hover:bg-emerald-50 hover:text-emerald-900 focus:bg-emerald-50 focus:text-emerald-900 data-[state=open]:bg-emerald-50 data-[state=open]:text-emerald-900 transition-colors"
+                  >
+                    <Link
+                      href="/products/sheet-metal-press-parts"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setDropdownOpen(false);
+                      }}
+                      className="flex-1 text-left text-inherit"
+                    >
+                      Sheet Metal Press Parts &amp; Banding
+                    </Link>
+                  </DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent
+                    className="w-72 rounded-xl border border-slate-200 bg-white p-1.5 text-slate-800 shadow-xl"
+                    onMouseEnter={handleDropdownEnter}
+                    onMouseLeave={handleDropdownLeave}
+                  >
+                    {sheetMetalProducts.map((item) => (
+                      <DropdownMenuItem
+                        key={item.id}
+                        asChild
+                        className="cursor-pointer text-[13px] font-medium py-1.5 px-3 text-slate-700 bg-white hover:bg-emerald-50 hover:text-emerald-900 focus:bg-emerald-50 focus:text-emerald-900 rounded-md transition-colors"
+                      >
+                        <Link href={item.path}>{item.title}</Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
@@ -649,7 +714,7 @@ export const Navbar: React.FC = () => {
                         }
                         className="flex items-center justify-between px-2.5 py-2 text-[13px] font-semibold text-slate-800 hover:text-emerald-800 text-left cursor-pointer"
                       >
-                        <span>Cable Marker Tags &amp; ID</span>
+                        <span>Cable Marker Tag &amp; Identification</span>
                         <ChevronDown
                           className={cn(
                             'size-3.5 transition-transform',
@@ -659,6 +724,13 @@ export const Navbar: React.FC = () => {
                       </button>
                       {mobileActiveSub === 'tags' && (
                         <div className="ml-2 pl-2 border-l border-slate-200 flex flex-col gap-1 py-1">
+                          <Link
+                            href="/products/cable-marker-tags"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="px-2 py-1 text-[12.5px] font-semibold text-emerald-800 hover:text-emerald-900 border-b border-slate-100 pb-1.5 mb-0.5"
+                          >
+                            All Marker Tags Range &rarr;
+                          </Link>
                           {cableMarkerTagProducts.map((item) => (
                             <Link
                               key={item.id}
@@ -766,22 +838,66 @@ export const Navbar: React.FC = () => {
                       )}
 
                       {/* 6. CNC Machined */}
-                      <Link
-                        href="/products/cnc-machine-component"
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="px-2.5 py-2 text-[13px] font-semibold text-slate-800 hover:text-emerald-800"
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setMobileActiveSub(mobileActiveSub === 'cnc' ? null : 'cnc')
+                        }
+                        className="flex items-center justify-between px-2.5 py-2 text-[13px] font-semibold text-slate-800 hover:text-emerald-800 text-left cursor-pointer"
                       >
-                        CNC Machined Components
-                      </Link>
+                        <span>CNC Machined Components</span>
+                        <ChevronDown
+                          className={cn(
+                            'size-3.5 transition-transform',
+                            mobileActiveSub === 'cnc' && 'rotate-180 text-emerald-800'
+                          )}
+                        />
+                      </button>
+                      {mobileActiveSub === 'cnc' && (
+                        <div className="ml-2 pl-2 border-l border-slate-200 flex flex-col gap-1 py-1">
+                          {cncProducts.map((item) => (
+                            <Link
+                              key={item.id}
+                              href={item.path}
+                              onClick={() => setMobileMenuOpen(false)}
+                              className="px-2 py-1 text-[12.5px] text-slate-600 hover:text-emerald-800"
+                            >
+                              {item.title}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
 
-                      {/* 7. Sheet Metal */}
-                      <Link
-                        href="/products/sheet-metal-press-parts"
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="px-2.5 py-2 text-[13px] font-semibold text-slate-800 hover:text-emerald-800"
+                      {/* 7. Sheet Metal Press Parts & Banding */}
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setMobileActiveSub(mobileActiveSub === 'sheet-metal' ? null : 'sheet-metal')
+                        }
+                        className="flex items-center justify-between px-2.5 py-2 text-[13px] font-semibold text-slate-800 hover:text-emerald-800 text-left cursor-pointer"
                       >
-                        Sheet Metal Press Parts &amp; Banding
-                      </Link>
+                        <span>Sheet Metal Press Parts &amp; Banding</span>
+                        <ChevronDown
+                          className={cn(
+                            'size-3.5 transition-transform',
+                            mobileActiveSub === 'sheet-metal' && 'rotate-180 text-emerald-800'
+                          )}
+                        />
+                      </button>
+                      {mobileActiveSub === 'sheet-metal' && (
+                        <div className="ml-2 pl-2 border-l border-slate-200 flex flex-col gap-1 py-1">
+                          {sheetMetalProducts.map((item) => (
+                            <Link
+                              key={item.id}
+                              href={item.path}
+                              onClick={() => setMobileMenuOpen(false)}
+                              className="px-2 py-1 text-[12.5px] text-slate-600 hover:text-emerald-800"
+                            >
+                              {item.title}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>

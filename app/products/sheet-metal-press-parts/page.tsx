@@ -8,6 +8,7 @@ import {
   ArrowRight,
   FileText
 } from 'lucide-react';
+import { sheetMetalCatalogItems } from '@/data/sheetMetalProductsData';
 
 const SheetMetalPressPartsPage: React.FC = () => {
   return (
@@ -154,77 +155,47 @@ const SheetMetalPressPartsPage: React.FC = () => {
             Explore the <span className="font-bold text-[#8c2442] ml-1 sm:ml-1.5">Press Parts &amp; Banding Range</span>
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-            {[
-              {
-                id: 'sheet-metal-press-parts',
-                title: 'Sheet Metal Press Parts',
-                category: 'CUSTOM PRESS COMPONENTS',
-                badge: 'BLANKING · PIERCING · FORMING',
-                image: '/assets/sheet_metal/page_98_img_0.webp',
-                desc: 'Custom stamped metal press components, mounting brackets, and precision clips made to drawings.',
-              },
-              {
-                id: 'stainless-steel-banding',
-                title: 'Stainless Steel Banding',
-                category: 'STAINLESS STEEL BANDING',
-                badge: 'SS201 · SS304 · SS316 · SS430',
-                image: '/assets/sheet_metal/page_99_img_0.webp',
-                desc: 'Deburred, safe rounded-edge strapping coils in 1/4" to 3/4" widths for heavy industrial clamping.',
-              },
-              {
-                id: 'banding-buckles-fasteners',
-                title: 'Banding Buckles & Fasteners',
-                category: 'FASTENING ACCESSORIES',
-                badge: 'JAW · WING · SCREW BUCKLES',
-                image: '/assets/sheet_metal/page_100_img_0.webp',
-                desc: 'Heavy-duty wing seals and screw buckles ensuring maximum tension retention on strapped bundles.',
-              },
-              {
-                id: 'sign-mounting-brackets',
-                title: 'Sign Mounting Brackets',
-                category: 'MOUNTING SOLUTIONS',
-                badge: 'STRAIGHT & FLARED-LEG · SS201',
-                image: '/assets/sheet_metal/page_100_img_2.webp',
-                desc: 'Straight and flared-leg brackets designed for secure mounting of signs, cameras, and electrical boxes.',
-              },
-            ].map((product) => (
-              <div 
-                key={product.id}
-                id={product.id}
-                className="group scroll-mt-24 bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-12px_rgba(15,23,42,0.12)] hover:border-slate-300"
+          <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
+            {sheetMetalCatalogItems.map((item) => (
+              <Link
+                key={item.id}
+                id={item.id}
+                href={item.link}
+                className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)] max-w-[380px] group scroll-mt-24 bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-12px_rgba(15,23,42,0.12)] hover:border-slate-300 block no-underline"
               >
                 <div className="relative h-[190px] sm:h-[220px] bg-slate-50 flex items-center justify-center overflow-hidden p-4">
                   <img
-                    src={product.image}
-                    alt={product.title}
+                    src={item.image}
+                    alt={item.title}
                     className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
                 </div>
 
-                <div className="p-5 flex flex-col flex-1">
-                  <div className="text-[10px] sm:text-[10.5px] font-bold tracking-wider text-slate-400 uppercase mb-1.5">
-                    {product.category}
+                <div className="p-5 sm:p-6 flex flex-col flex-1">
+                  <div className="text-[10.5px] sm:text-[11px] font-bold tracking-wider text-slate-400 uppercase mb-1.5">
+                    {item.category}
                   </div>
-                  <h3 className="text-[17px] sm:text-[18px] font-bold text-slate-900 tracking-tight m-0 mb-3 leading-snug">
-                    {product.title}
+                  <h3 className="text-[19px] sm:text-[21px] font-bold text-slate-900 tracking-tight m-0 mb-3 group-hover:text-[#004428] transition-colors leading-snug">
+                    {item.title}
                   </h3>
-                  <div className="w-7 h-[2px] bg-slate-200 mb-4 transition-all duration-300 group-hover:w-11 group-hover:bg-[#8c2442]" />
-                  <p className="text-[13px] text-slate-500 font-normal leading-relaxed m-0">
-                    {product.desc}
+                  <div className="w-7 h-[2px] bg-slate-200 mb-6 transition-all duration-300 group-hover:w-11 group-hover:bg-[#8c2442]" />
+                  <p className="text-[13px] text-slate-500 font-normal leading-relaxed m-0 mb-6">
+                    {item.desc}
                   </p>
+
+                  <div className="mt-auto inline-flex items-center gap-2 text-[12px] sm:text-[12.5px] font-bold tracking-wider text-[#8c2442] uppercase transition-all duration-200 group-hover:gap-3">
+                    <span>VIEW DETAILS</span>
+                    <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" />
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── 6. Trust Row / Certified Engineering ── */}
-      <TrustRow />
-
-      {/* ── 7. Engineering Support & RFQ Banner ── */}
+      {/* ── 6. Engineering Support & RFQ Banner ── */}
       <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-[#004428] via-[#00331e] to-[#0a110e] text-white">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -276,6 +247,9 @@ const SheetMetalPressPartsPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* ── 7. Trust Row / Certified Engineering ── */}
+      <TrustRow />
 
     </main>
   );

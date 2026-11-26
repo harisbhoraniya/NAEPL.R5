@@ -1,7 +1,9 @@
 export interface CleatSizingRow {
   partNo: string;
   minDia: string;
-  midDia: string;
+  midDia?: string;
+  midDia1?: string;
+  midDia2?: string;
   maxDia: string;
   height: string;
   width: string;
@@ -87,7 +89,7 @@ export const cableCleatsProductsDetails: Record<string, CableCleatProductDetail>
     category: 'POWER CABLE ACCESSORIES',
     badge: 'TREFOIL FORMATION · SHORT-CIRCUIT TESTED',
     tagline: 'Engineered to secure three-phase trefoil cable arrangements and withstand catastrophic electromagnetic short-circuit repulsion forces up to 180 kA peak.',
-    description: 'NAEPL Trefoil Cable Cleats are designed to securely restrain and support three single-core power cables arranged in a triangular (trefoil) configuration along cable trays, ladders, or structural steelwork. Built with a heavy-duty 50 × 2.1 mm marine-grade AISI 316L stainless steel perimeter frame and an integral Low Smoke Zero Halogen (LSZH) cushioning pad, they prevent cable sheath degradation while safeguarding personnel and equipment during short-circuit faults.',
+    description: 'Engineered to secure three-phase trefoil cable arrangements and withstand catastrophic electromagnetic short-circuit repulsion forces up to 180 kA peak at 300 mm spacing (125 kA at 600 mm spacing). Built with a 50 × 2.1 mm AISI 316L stainless steel frame, M8/M10/M12 bolts, and integral LSZH cushioning pad rated from -40°C to +60°C compliant with IEC 61914.',
     image: '/assets/cable_cleats/cable_cleats_hero_hd.webp',
     formation: 'Trefoil Formation',
     features: [
@@ -100,13 +102,13 @@ export const cableCleatsProductsDetails: Record<string, CableCleatProductDetail>
       'Single-bolt mounting design allows rapid installation using standard metric wrenches.',
     ],
     specs: {
-      frameMaterial: '50 × 2.1 mm Marine Grade AISI 316L Stainless Steel & High-Strength Composite',
+      frameMaterial: '50 × 2.1 mm Marine Grade AISI 316L Stainless Steel Frame & High-Strength Composite',
       boltsFasteners: 'AISI 316L Stainless Steel M8 / M10 / M12 Bolts (Mounting Hardware Supplied)',
       lockingSystem: 'Self-Locking Nylon Insert Lock Nuts for Vibration-Proof Retention',
       cushioningPad: 'Integral Low Smoke, Zero Halogen (LSZH / LSOH) Cushioning Pad',
       shortCircuitWithstand: '180 kA Peak @ 300 mm Spacing | 125 kA Peak @ 600 mm Spacing',
       operatingTemp: '-40°C to +60°C Operating Temperature Tested',
-      impactResistance: 'High Impact Resistance (Certified for Heavy Mechanical Loads)',
+      impactResistance: 'High Impact Resistance (Certified for Heavy Mechanical Loads per IEC 61914)',
       flameResistance: 'Passes 30-second needle flame test (Self-Extinguishing, Non-Propagating)',
       standards: 'IEC 61914 Compliant (Cable Cleats for Electrical Installations)',
     },
@@ -123,9 +125,9 @@ export const cableCleatsProductsDetails: Record<string, CableCleatProductDetail>
     ],
     tables: [
       {
-        title: 'Trefoil Cable Cleats Dimensional & Sizing Specifications',
-        subtitle: 'Brochure specifications for trefoil formation cable range (18 mm to 128 mm OD)',
-        headers: ['Part Number', 'Min. Cable Dia (mm)', 'Mid. Cable Dia (mm)', 'Max. Cable Dia (mm)', 'Height H (mm)', 'Width W (mm)'],
+        title: 'Trefoil Cable Cleats',
+        subtitle: 'Brochure Page 42 · Sizing specifications for trefoil formation cable range (18 mm to 128 mm OD)',
+        headers: ['Part Number', 'Min. Dia. (mm)', 'Mid Dia. (mm)', 'Max Dia. (mm)', 'H (mm)', 'W (mm)'],
         rows: [
           { partNo: 'NCC-T1823', minDia: '18', midDia: '20', maxDia: '23', height: '79', width: '82' },
           { partNo: 'NCC-T2328', minDia: '23', midDia: '25', maxDia: '28', height: '84', width: '93' },
@@ -162,27 +164,28 @@ export const cableCleatsProductsDetails: Record<string, CableCleatProductDetail>
     category: 'POWER CABLE ACCESSORIES',
     badge: 'SINGLE FORMATION · HIGH RETENTION',
     tagline: 'Heavy-duty single conductor cable cleats engineered for secure individual power cable routing and high fault-current restraint.',
-    description: 'NAEPL Single Cable Cleats deliver robust, vibration-proof retention for individual single-core and multi-conductor cables in electrical switchgear, cable trays, and transformer feeds. Engineered with an AISI 316L stainless steel frame, high-impact composite body, and low-smoke halogen-free liner, they provide reliable lateral and axial restraint against destructive short-circuit magnetic surges.',
+    description: 'Heavy-duty single conductor cable cleats engineered for secure individual power cable routing in electrical installations. Manufactured with a 50 × 2.1 mm AISI 316L stainless steel frame, M8/M10/M12 fasteners, and an integral LSZH cushioning pad to withstand short-circuit forces up to 274 kA peak (180 kA at 300 mm spacing, 125 kA at 600 mm spacing) compliant with IEC 61914.',
     image: '/assets/cable_cleats/single_cable_cleat_product.webp',
     formation: 'Single Cable Formation',
     features: [
       'Engineered for single-conductor cable retention across power distribution and control panels.',
       'Heavy-duty composite body with 50 × 2.1 mm AISI 316L marine-grade stainless steel frame.',
+      'Supplied with marine-grade 316L stainless steel M8, M10, or M12 fasteners and nylon lock nuts.',
       'Integral LSZH (Low Smoke Zero Halogen) liner prevents cable sheath pinching and damage.',
       'Accommodates large single cables from 32 mm up to 150 mm outer diameter.',
-      'Withstands extreme electromagnetic forces with tested peak ratings up to 274 kA IP Peak.',
+      'Withstands extreme electromagnetic forces with tested peak ratings up to 274 kA IP Peak (180 kA at 300 mm, 125 kA at 600 mm spacing).',
       'Passes rigid lateral and axial load pull tests compliant with IEC 61914.',
       'Temperature rated from -40°C to +60°C for extreme indoor and outdoor industrial duty.',
     ],
     specs: {
-      frameMaterial: '50 × 2.1 mm Marine Grade AISI 316L Stainless Steel & High-Strength Composite',
+      frameMaterial: '50 × 2.1 mm Marine Grade AISI 316L Stainless Steel Frame & High-Strength Composite',
       boltsFasteners: 'AISI 316L Stainless Steel M8 / M10 / M12 Bolts (Mounting Hardware Supplied)',
-      lockingSystem: 'Nylon Insert Lock Nuts ensuring vibration-resistant fastening',
+      lockingSystem: 'Self-Locking Nylon Insert Lock Nuts for Vibration-Proof Retention',
       cushioningPad: 'Integral Low Smoke, Zero Halogen (LSZH / LSOH) Cushioning Liner',
-      shortCircuitWithstand: 'Tested up to 274 kA IP Peak (refer to Spacing vs Conductor Distance Table)',
+      shortCircuitWithstand: '180 kA Peak @ 300 mm Spacing | 125 kA Peak @ 600 mm Spacing (Up to 274 kA Peak at 225 mm Spacing)',
       operatingTemp: '-40°C to +60°C Operating Temperature Tested',
-      impactResistance: 'High Mechanical Impact Resistance Rating',
-      flameResistance: 'Passes 30-second needle flame test (Self-Extinguishing)',
+      impactResistance: 'High Mechanical Impact Resistance Rating (IEC 61914)',
+      flameResistance: 'Passes 30-second needle flame test (Self-Extinguishing, Non-Propagating)',
       standards: 'IEC 61914 Compliant (Cable Cleats for Electrical Installations)',
     },
     applications: [
@@ -198,27 +201,27 @@ export const cableCleatsProductsDetails: Record<string, CableCleatProductDetail>
     ],
     tables: [
       {
-        title: 'Single Cable Cleats Dimensional & Sizing Specifications',
-        subtitle: 'Brochure specifications for single cable conductor range (32 mm to 150 mm OD)',
-        headers: ['Part Number', 'Min. Cable Dia (mm)', 'Mid. Cable Dia (mm)', 'Max. Cable Dia (mm)', 'Height H (mm)', 'Width W (mm)'],
+        title: 'Single Cable Cleats',
+        subtitle: 'Brochure Page 43 · Sizing specifications for single cable conductor range (32 mm to 150 mm OD)',
+        headers: ['Part Number', 'Min. Dia. (mm)', 'Mid Dia. 1 (mm)', 'Mid Dia. 2 (mm)', 'Max Dia. (mm)', 'H (mm)', 'W (mm)'],
         rows: [
-          { partNo: 'NCC-S3239', minDia: '32', midDia: '35', maxDia: '39', height: '74', width: '81' },
-          { partNo: 'NCC-S3745', minDia: '37', midDia: '40', maxDia: '45', height: '77', width: '88' },
-          { partNo: 'NCC-S4452', minDia: '44', midDia: '47', maxDia: '52', height: '83', width: '94' },
-          { partNo: 'NCC-S5159', minDia: '51', midDia: '54', maxDia: '59', height: '87', width: '102' },
-          { partNo: 'NCC-S5866', minDia: '58', midDia: '61', maxDia: '66', height: '91', width: '110' },
-          { partNo: 'NCC-S6573', minDia: '65', midDia: '68', maxDia: '73', height: '97', width: '116' },
-          { partNo: 'NCC-S7385', minDia: '73', midDia: '75-79', maxDia: '85', height: '101', width: '131' },
-          { partNo: 'NCC-S8494', minDia: '84', midDia: '86-90', maxDia: '94', height: '110', width: '140' },
-          { partNo: 'NCC-S94118', minDia: '94', midDia: '98-106', maxDia: '118', height: '134', width: '163' },
-          { partNo: 'NCC-S118130', minDia: '118', midDia: '120-124', maxDia: '130', height: '146', width: '175' },
-          { partNo: 'NCC-S127150', minDia: '127', midDia: '131-139', maxDia: '150', height: '166', width: '195' },
+          { partNo: 'NCC-S3239', minDia: '32', midDia1: '35', midDia2: '/', maxDia: '39', height: '74', width: '81' },
+          { partNo: 'NCC-S3745', minDia: '37', midDia1: '40', midDia2: '/', maxDia: '45', height: '77', width: '88' },
+          { partNo: 'NCC-S4452', minDia: '44', midDia1: '47', midDia2: '/', maxDia: '52', height: '83', width: '94' },
+          { partNo: 'NCC-S5159', minDia: '51', midDia1: '54', midDia2: '/', maxDia: '59', height: '87', width: '102' },
+          { partNo: 'NCC-S5866', minDia: '58', midDia1: '61', midDia2: '/', maxDia: '66', height: '91', width: '110' },
+          { partNo: 'NCC-S6573', minDia: '65', midDia1: '68', midDia2: '/', maxDia: '73', height: '97', width: '116' },
+          { partNo: 'NCC-S7385', minDia: '73', midDia1: '75', midDia2: '79', maxDia: '85', height: '101', width: '131' },
+          { partNo: 'NCC-S8494', minDia: '84', midDia1: '86', midDia2: '90', maxDia: '94', height: '110', width: '140' },
+          { partNo: 'NCC-S94118', minDia: '94', midDia1: '98', midDia2: '106', maxDia: '118', height: '134', width: '163' },
+          { partNo: 'NCC-S118130', minDia: '118', midDia1: '120', midDia2: '124', maxDia: '130', height: '146', width: '175' },
+          { partNo: 'NCC-S127150', minDia: '127', midDia1: '131', midDia2: '139', maxDia: '150', height: '166', width: '195' },
         ],
       },
     ],
     withstandTable: {
       title: 'Single Conductor Short-Circuit Withstand Capability',
-      subtitle: 'Peak current rating (IP Peak in kA) based on cleat spacing and conductor center-to-center distance (from brochure Page 33)',
+      subtitle: 'Peak current rating (IP Peak in kA) based on cleat spacing and conductor center-to-center distance (from brochure Page 41)',
       spacingHeaders: ['23', '25', '27', '29', '31', '33', '35', '37', '39', '41', '43', '45', '47', '49', '51', '53', '55', '57', '59', '61'],
       rows: [
         { maxSpacing: '225 mm', values: ['168', '175', '182', '189', '195', '201', '207', '213', '219', '224', '230', '235', '240', '245', '250', '255', '260', '265', '269', '274'] },

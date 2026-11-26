@@ -26,7 +26,24 @@ import {
   TableCaption 
 } from '@/components/ui/table';
 import { TrustRow } from '@/components/TrustRow';
-import { lugsProductsDetails } from '@/data/lugsProductsData';
+import { lugsProductsDetails, LugSizingRow } from '@/data/lugsProductsData';
+
+const getCellValue = (row: LugSizingRow, header: string): string => {
+  const h = header.toLowerCase();
+  if (h.includes('part no') || h.includes('bare code')) return row.code || '–';
+  if (h.includes('insulated code')) return row.extra || '–';
+  if (h.includes('sq.mm')) return row.sqmm || '–';
+  if (h.includes('pin type')) return row.stud || '–';
+  if (h.includes('hole spacing') || h.includes('hole pitch')) return row.extra || '44.5';
+  if (h.includes('barrel mouth')) return row.extra || '–';
+  if (h.includes('stud') && !h.includes('hole')) return row.stud || '–';
+  if (h.includes('hole') || h.includes('stud hole')) return row.studHole || '–';
+  if (h.includes('barrel id')) return row.barrelId || '–';
+  if (h.includes('palm width') || h.includes('pin width')) return row.palmWidth || '–';
+  if (h.includes('barrel length') || h.includes('pin length')) return row.barrelLength || '–';
+  if (h.includes('total length')) return row.totalLength || '–';
+  return (row as unknown as Record<string, string | undefined>)[header] || '–';
+};
 
 const LugProductDetailPage: React.FC = () => {
   const params = useParams();
@@ -35,15 +52,16 @@ const LugProductDetailPage: React.FC = () => {
 
   const [searchTerm, setSearchTerm] = useState('');
 
-  const currentTable = product.tables[0];
+  const currentTable = product?.tables?.[0];
   const filteredRows = currentTable
     ? currentTable.rows.filter((r) => {
         if (!searchTerm.trim()) return true;
         const q = searchTerm.toLowerCase();
         return (
-          r.code.toLowerCase().includes(q) ||
-          r.sqmm.toLowerCase().includes(q) ||
-          r.stud.toLowerCase().includes(q)
+          r.code?.toLowerCase().includes(q) ||
+          r.sqmm?.toLowerCase().includes(q) ||
+          r.stud?.toLowerCase().includes(q) ||
+          r.extra?.toLowerCase().includes(q)
         );
       })
     : [];
@@ -147,9 +165,11 @@ const LugProductDetailPage: React.FC = () => {
                 Engineered for High Conductivity &amp; Dependable Crimping Grip
               </h2>
 
-              <p className="text-[14px] sm:text-[15px] leading-relaxed text-slate-700 mb-6 font-normal">
-                {product.description}
-              </p>
+              {product.description && (
+                <p className="text-[14px] sm:text-[15px] leading-relaxed text-slate-700 mb-6 font-normal">
+                  {product.description}
+                </p>
+              )}
 
               {/* Technical Specifications Matrix Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-8">
@@ -186,15 +206,16 @@ const LugProductDetailPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Key Features Checklist */}
-              <div className="p-5 sm:p-6 rounded-2xl bg-slate-50/70 border border-slate-200">
-                <h3 className="text-[14px] sm:text-[15px] font-bold text-slate-900 uppercase tracking-wide mb-3.5 flex items-center gap-2">
-                  <span>Key Features &amp; Engineering Advantages</span>
+              {/* Key Features List */}
+              <div className="mb-8">
+                <h3 className="text-[14px] sm:text-[15px] font-bold uppercase tracking-wider text-slate-900 mb-4 flex items-center gap-2.5">
+                  <Layers size={18} className="text-[#004428]" />
+                  <span>KEY FEATURES &amp; ADVANTAGES</span>
                 </h3>
-                <ul className="space-y-2.5">
+                <ul className="space-y-3.5">
                   {product.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5 text-[13.5px] sm:text-[14px] text-slate-700 leading-normal">
-                      <CheckCircle2 size={16} className="text-emerald-700 shrink-0 mt-0.5" />
+                    <li key={idx} className="flex items-start gap-3 text-[14px] sm:text-[14.5px] text-slate-700 leading-relaxed">
+                      <CheckCircle2 size={18} className="text-[#00663d] shrink-0 mt-0.5" />
                       <span>{feature}</span>
                     </li>
                   ))}
@@ -207,7 +228,7 @@ const LugProductDetailPage: React.FC = () => {
         </div>
       </section>
 
-      {/* ── 3. Technical Sizing Matrix (Hidden for the time being per client request) ── */}
+      {/* ── 3. Technical Sizing Matrix (Placeholder per client request) ── */}
       <section className="py-12 sm:py-16 md:py-20 bg-slate-50 border-y border-slate-200" id="sizing-matrix">
         <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="bg-white border border-slate-200 rounded-2xl p-8 sm:p-12 text-center max-w-[820px] mx-auto shadow-sm">
@@ -243,6 +264,99 @@ const LugProductDetailPage: React.FC = () => {
             </div>
           </div>
         </div>
+
+        {/* ── Interactive Sizing Table (Commented / hidden for now per client request; preserved for future use) ── */}
+        {false && (
+          <div className="max-w-[1240px] mx-auto px-4 sm:px-6 mt-12">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+              <div>
+                <div className="text-[11px] font-bold tracking-[0.16em] uppercase text-[#004428] mb-1.5 flex items-center gap-2">
+                  <span className="inline-block w-5 h-[1.5px] bg-[#004428]" />
+                  <span>NAEPL Technical Sizing Matrix</span>
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+                  {currentTable?.title || 'Dimensional Sizing Specifications'}
+                </h2>
+                <p className="text-[13px] sm:text-[14px] text-slate-600 mt-1 max-w-[700px]">
+                  {currentTable?.subtitle || 'Standard catalogue codes and dimensional specifications from the official NAEPL engineering brochure.'}
+                </p>
+              </div>
+
+              {/* Search / Filter Input */}
+              <div className="flex items-center gap-3">
+                <div className="relative w-full sm:w-64">
+                  <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                  <input
+                    type="text"
+                    placeholder="Filter part code, size..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full pl-9 pr-3 py-2 text-[12.5px] rounded-lg border border-slate-300 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#004428] focus:border-[#004428]"
+                  />
+                </div>
+
+                <span className="text-[11.5px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-2 rounded-lg uppercase tracking-wider shrink-0">
+                  {filteredRows.length} Sizes
+                </span>
+              </div>
+            </div>
+
+            {/* Table Card */}
+            <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+              <div className="p-2 sm:p-4 overflow-x-auto max-h-[640px] overflow-y-auto">
+                <Table>
+                  <TableHeader className="bg-slate-100/90 sticky top-0 z-10">
+                    <TableRow className="border-b-2 border-slate-200">
+                      {currentTable?.headers.map((h, hIdx) => (
+                        <TableHead 
+                          key={hIdx} 
+                          className={`font-bold text-[12px] sm:text-[12.5px] uppercase tracking-wider py-3.5 ${
+                            hIdx === 0 ? 'text-[#004428]' : 'text-slate-700'
+                          }`}
+                        >
+                          {h}
+                        </TableHead>
+                      ))}
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {filteredRows.map((row, rIdx) => (
+                      <TableRow 
+                        key={rIdx}
+                        className="border-b border-slate-100 hover:bg-emerald-50/40 odd:bg-white even:bg-slate-50/50 transition-colors"
+                      >
+                        {currentTable.headers.map((h, hIdx) => {
+                          const val = getCellValue(row, h);
+                          return (
+                            <TableCell 
+                              key={hIdx}
+                              className={`py-2.5 text-[12.5px] sm:text-[13px] ${
+                                hIdx === 0 
+                                  ? 'font-bold text-[#004428] font-mono' 
+                                  : hIdx === 1 
+                                  ? 'text-slate-800 font-medium' 
+                                  : 'text-slate-700'
+                              }`}
+                            >
+                              {val}
+                            </TableCell>
+                          );
+                        })}
+                      </TableRow>
+                    ))}
+                    {filteredRows.length === 0 && (
+                      <TableRow>
+                        <TableCell colSpan={currentTable?.headers.length || 8} className="text-center py-8 text-slate-500">
+                          No sizes match your search &ldquo;{searchTerm}&rdquo;. Try another term.
+                        </TableCell>
+                      </TableRow>
+                    )}
+                  </TableBody>
+                </Table>
+              </div>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* ── 5. Technical Support & RFQ Banner ── */}

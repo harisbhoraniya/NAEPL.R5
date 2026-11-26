@@ -1,35 +1,16 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { BackToProducts } from '@/components/BackToProducts';
 import { TrustRow } from '@/components/TrustRow';
 import {
   CheckCircle2,
   ArrowRight,
-  ArrowLeft,
-  FileText,
-  Search,
-  X,
-  Check
+  FileText
 } from 'lucide-react';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
-import {
-  aluminiumEnclosuresData,
-  mildSteelJunctionBoxesData,
-  stainlessSteelJunctionBoxesData,
-  pushButtonPanelsData,
-} from '@/data/linkBoxProductsData';
+import { linkBoxCatalogItems } from '@/data/linkBoxProductsData';
 
 const LinkBoxPage: React.FC = () => {
-  const [activeTable, setActiveTable] = useState<'aluminium' | 'mild-steel' | 'stainless-steel' | 'push-button'>('aluminium');
-  const [searchQuery, setSearchQuery] = useState('');
   return (
     <main className="w-full bg-[#fcfcfd] text-[#111827]">
       {/* ── 1. Hero Banner (Descriptive Naming: "Weatherproof Junction Boxes & Enclosures", Pink removed) ── */}
@@ -161,7 +142,7 @@ const LinkBoxPage: React.FC = () => {
         </div>
       </section>
 
-      {/* ── 5. Product Range Showcase ── */}
+      {/* ── 5. Product Range Showcase (Exact N-LOC Card Layout) ── */}
       <section className="py-12 sm:py-16 pb-16 sm:pb-20 bg-white" id="products">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
           <div className="flex items-center gap-2 text-[10px] sm:text-[11px] font-semibold tracking-[0.12em] uppercase text-[#004428] mb-2 before:content-[''] before:inline-block before:w-5 sm:before:w-6 before:h-[1.5px] before:bg-[#004428]">
@@ -171,483 +152,39 @@ const LinkBoxPage: React.FC = () => {
             Explore the <span className="font-bold text-[#8c2442] ml-1 sm:ml-1.5">Enclosures &amp; Junction Boxes Range</span>
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-            {/* Card 1: Aluminium Die Cast Junction Box */}
-            <div
-              id="aluminium-enclosure"
-              className="group scroll-mt-24 bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-12px_rgba(15,23,42,0.12)] hover:border-slate-300"
-            >
-              <div className="relative h-[190px] sm:h-[220px] bg-slate-50 flex items-center justify-center overflow-hidden p-4">
-                <img
-                  src="/assets/link_box/aluminium_die_cast_enclosure.jpg"
-                  alt="Aluminium Die Cast Enclosures"
-                  className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-              </div>
-
-              <div className="p-5 flex flex-col flex-1">
-                <div className="text-[10px] sm:text-[10.5px] font-bold tracking-wider text-slate-400 uppercase mb-1.5">
-                  ALUMINIUM DIE-CAST ENCLOSURES
-                </div>
-                <h3 className="text-[18px] sm:text-[19px] font-bold text-slate-900 tracking-tight m-0 mb-3">
-                  Aluminium Die Cast Enclosures
-                </h3>
-                <div className="w-7 h-[2px] bg-slate-200 mb-4 transition-all duration-300 group-hover:w-11 group-hover:bg-[#8c2442]" />
-                <p className="text-[13px] text-slate-500 font-normal leading-relaxed m-0">
-                  Precision die-cast aluminium enclosures designed for electrical components and control applications, offering a robust construction and compact housing solution.
-                </p>
-              </div>
-            </div>
-
-            {/* Card 2: Stainless Steel Watertight Junction Box */}
-            <div
-              id="ss-enclosure"
-              className="group scroll-mt-24 bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-12px_rgba(15,23,42,0.12)] hover:border-slate-300"
-            >
-              <div className="relative h-[190px] sm:h-[220px] bg-slate-50 flex items-center justify-center overflow-hidden p-4">
-                <img
-                  src="/assets/link_box/stainless_steel_junction_box.webp"
-                  alt="Stainless Steel Watertight Junction Box"
-                  className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-              </div>
-
-              <div className="p-5 flex flex-col flex-1">
-                <div className="text-[10px] sm:text-[10.5px] font-bold tracking-wider text-slate-400 uppercase mb-1.5">
-                  STAINLESS STEEL ENCLOSURES
-                </div>
-                <h3 className="text-[18px] sm:text-[19px] font-bold text-slate-900 tracking-tight m-0 mb-3">
-                  Stainless Steel Enclosures
-                </h3>
-                <div className="w-7 h-[2px] bg-slate-200 mb-4 transition-all duration-300 group-hover:w-11 group-hover:bg-[#8c2442]" />
-                <p className="text-[13px] text-slate-500 font-normal leading-relaxed m-0">
-                  Stainless steel enclosures manufactured in SS 304 and SS 316, suitable for electrical installations, industrial equipment and demanding application environments.
-                </p>
-              </div>
-            </div>
-
-            {/* Card 3: Mild Steel Clamp-Secured Junction Box */}
-            <div
-              id="ms-enclosure"
-              className="group scroll-mt-24 bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-12px_rgba(15,23,42,0.12)] hover:border-slate-300"
-            >
-              <div className="relative h-[190px] sm:h-[220px] bg-slate-50 flex items-center justify-center overflow-hidden p-4">
-                <img
-                  src="/assets/link_box/mild_steel_junction_box.webp"
-                  alt="Mild Steel Clamp-Secured Junction Box"
-                  className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-              </div>
-
-              <div className="p-5 flex flex-col flex-1">
-                <div className="text-[10px] sm:text-[10.5px] font-bold tracking-wider text-slate-400 uppercase mb-1.5">
-                  MILD STEEL JUNCTION BOXES
-                </div>
-                <h3 className="text-[18px] sm:text-[19px] font-bold text-slate-900 tracking-tight m-0 mb-3">
-                  Mild Steel Junction Boxes
-                </h3>
-                <div className="w-7 h-[2px] bg-slate-200 mb-4 transition-all duration-300 group-hover:w-11 group-hover:bg-[#8c2442]" />
-                <p className="text-[13px] text-slate-500 font-normal leading-relaxed m-0">
-                  Heavy-duty CRCA sheet steel junction boxes with powder-coated finishes, manufactured for reliable electrical housing and industrial applications.
-                </p>
-              </div>
-            </div>
-
-            {/* Card 4: SS Push Button Panels */}
-            <div
-              id="ss-push-button-panel"
-              className="group scroll-mt-24 bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-12px_rgba(15,23,42,0.12)] hover:border-slate-300"
-            >
-              <div className="relative h-[190px] sm:h-[220px] bg-slate-50 flex items-center justify-center overflow-hidden p-4">
-                <img
-                  src="/assets/link_box/ss_push_button_panel.png"
-                  alt="SS Push Button Panels"
-                  className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-              </div>
-
-              <div className="p-5 flex flex-col flex-1">
-                <div className="text-[10px] sm:text-[10.5px] font-bold tracking-wider text-slate-400 uppercase mb-1.5">
-                  STAINLESS STEEL CONTROL ENCLOSURES
-                </div>
-                <h3 className="text-[18px] sm:text-[19px] font-bold text-slate-900 tracking-tight m-0 mb-3">
-                  SS Push Button Panels
-                </h3>
-                <div className="w-7 h-[2px] bg-slate-200 mb-4 transition-all duration-300 group-hover:w-11 group-hover:bg-[#8c2442]" />
-                <p className="text-[13px] text-slate-500 font-normal leading-relaxed m-0">
-                  Precision-fabricated stainless steel push button panels featuring 1, 2 and 3-way configurations, standard 22.5 mm cut-outs and IP66 sealing options.
-                </p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ── Technical Sizing Tables Section (From Official NAEPL Catalogue) ── */}
-      <section className="py-12 sm:py-16 md:py-20 bg-[#f8fafc] border-y border-slate-200" id="specifications">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
-            <div>
-              <div className="flex items-center gap-2 text-[10.5px] sm:text-[11.5px] font-bold tracking-[0.14em] uppercase text-[#004428] mb-1.5 before:content-[''] before:inline-block before:w-5 before:h-[1.5px] before:bg-[#004428]">
-                TECHNICAL DATA SHEET · SIZING MATRIX
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
-                Enclosure Sizing &amp; Part Numbers
-              </h2>
-              <p className="text-[13.5px] text-slate-500 mt-1">
-                Standard catalogue models and dimensions. Custom drillings, gland cutouts, and bespoke sizes manufactured upon request.
-              </p>
-            </div>
-
-            {/* Table Selector Tabs */}
-            <div className="flex flex-wrap items-center gap-2 p-1 bg-white border border-slate-200 rounded-xl shadow-sm">
-              <button
-                type="button"
-                onClick={() => { setActiveTable('aluminium'); setSearchQuery(''); }}
-                className={`px-3.5 py-2 rounded-lg text-[11.5px] sm:text-[12px] font-bold uppercase tracking-wider transition-all cursor-pointer ${
-                  activeTable === 'aluminium'
-                    ? 'bg-[#004428] text-white shadow-sm'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-                }`}
-              >
-                Aluminium Enclosures (20)
-              </button>
-              <button
-                type="button"
-                onClick={() => { setActiveTable('mild-steel'); setSearchQuery(''); }}
-                className={`px-3.5 py-2 rounded-lg text-[11.5px] sm:text-[12px] font-bold uppercase tracking-wider transition-all cursor-pointer ${
-                  activeTable === 'mild-steel'
-                    ? 'bg-[#004428] text-white shadow-sm'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-                }`}
-              >
-                Mild Steel JB (9)
-              </button>
-              <button
-                type="button"
-                onClick={() => { setActiveTable('stainless-steel'); setSearchQuery(''); }}
-                className={`px-3.5 py-2 rounded-lg text-[11.5px] sm:text-[12px] font-bold uppercase tracking-wider transition-all cursor-pointer ${
-                  activeTable === 'stainless-steel'
-                    ? 'bg-[#004428] text-white shadow-sm'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-                }`}
-              >
-                Stainless Steel JB (8)
-              </button>
-              <button
-                type="button"
-                onClick={() => { setActiveTable('push-button'); setSearchQuery(''); }}
-                className={`px-3.5 py-2 rounded-lg text-[11.5px] sm:text-[12px] font-bold uppercase tracking-wider transition-all cursor-pointer ${
-                  activeTable === 'push-button'
-                    ? 'bg-[#004428] text-white shadow-sm'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-                }`}
-              >
-                Push Button Panels (7)
-              </button>
-            </div>
-          </div>
-
-          {/* Active Table Card */}
-          <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
-            <div className="px-6 py-4 bg-slate-50/80 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-              <div>
-                <h3 className="text-[16px] font-bold text-slate-900 tracking-tight flex items-center gap-2">
-                  <span>
-                    {activeTable === 'aluminium' && 'Aluminium Die-Cast Enclosures (IP66/67)'}
-                    {activeTable === 'mild-steel' && 'Mild Steel Clamp-Secured Junction Boxes'}
-                    {activeTable === 'stainless-steel' && 'Stainless Steel AISI 304 / 316 Enclosures'}
-                    {activeTable === 'push-button' && 'SS Push Button Enclosures & Control Stations'}
-                  </span>
-                  <span className="text-[10.5px] px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800">
-                    Official NAEPL Catalogue
-                  </span>
-                </h3>
-                <p className="text-[12.5px] text-slate-500 mt-0.5">
-                  {activeTable === 'aluminium' && 'High corrosion resistance, polyurethane gasket, internal earthing screw.'}
-                  {activeTable === 'mild-steel' && 'Heavy-duty CRCA construction with polyurethane door seal and internal mounting panel.'}
-                  {activeTable === 'stainless-steel' && 'AISI 304 / 316 grade stainless steel with brushed grain finish for sanitary and marine use.'}
-                  {activeTable === 'push-button' && 'Pre-punched standard 22.5 mm actuator holes with silicone/neoprene oil-resistant seals.'}
-                </p>
-              </div>
-
-              {/* Table Search */}
-              <div className="flex items-center gap-3">
-                <div className="relative w-full sm:w-[260px]">
-                  <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search Part No., dimensions..."
-                    className="w-full pl-9 pr-8 py-1.5 bg-white border border-slate-200 rounded-xl text-[12px] text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#004428]/20 focus:border-[#004428] transition-all"
-                  />
-                  {searchQuery && (
-                    <button
-                      type="button"
-                      onClick={() => setSearchQuery('')}
-                      className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer"
-                    >
-                      <X size={14} />
-                    </button>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            {/* Table Display */}
-            <div className="p-2 sm:p-4 overflow-x-auto">
-              {activeTable === 'aluminium' && (
-                <Table>
-                  <TableHeader className="bg-slate-100/90">
-                    <TableRow className="border-b-2 border-slate-200">
-                      <TableHead className="font-bold text-[#004428] text-[12px] uppercase tracking-wider py-3.5">Part No.</TableHead>
-                      <TableHead className="font-bold text-slate-700 text-[12px] uppercase tracking-wider py-3.5">Width (mm)</TableHead>
-                      <TableHead className="font-bold text-slate-700 text-[12px] uppercase tracking-wider py-3.5">Length (mm)</TableHead>
-                      <TableHead className="font-bold text-slate-700 text-[12px] uppercase tracking-wider py-3.5">Height (mm)</TableHead>
-                      <TableHead className="font-bold text-slate-700 text-[12px] uppercase tracking-wider py-3.5 text-center">Mounting Plate</TableHead>
-                      <TableHead className="font-bold text-slate-700 text-[12px] uppercase tracking-wider py-3.5 text-center">DIN Rail (T15)</TableHead>
-                      <TableHead className="font-bold text-slate-700 text-[12px] uppercase tracking-wider py-3.5 text-center">DIN Rail (T35)</TableHead>
-                      <TableHead className="font-bold text-slate-700 text-[12px] uppercase tracking-wider py-3.5 text-center">Hinges Set</TableHead>
-                      <TableHead className="font-bold text-slate-700 text-[12px] uppercase tracking-wider py-3.5 text-center">Mounting Bracket</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {(() => {
-                      const q = searchQuery.toLowerCase().trim();
-                      const filtered = q
-                        ? aluminiumEnclosuresData.filter(
-                            (r) =>
-                              r.partNo.toLowerCase().includes(q) ||
-                              r.width.includes(q) ||
-                              r.length.includes(q) ||
-                              r.height.includes(q)
-                          )
-                        : aluminiumEnclosuresData;
-
-                      if (filtered.length === 0) {
-                        return (
-                          <TableRow>
-                            <TableCell colSpan={9} className="text-center py-10 text-slate-500 text-[13px]">
-                              No enclosures match your search "{searchQuery}".
-                            </TableCell>
-                          </TableRow>
-                        );
-                      }
-
-                      return filtered.map((row, idx) => (
-                        <TableRow key={idx} className="border-b border-slate-100 hover:bg-emerald-50/40 odd:bg-white even:bg-slate-50/50">
-                          <TableCell className="font-bold text-slate-900 font-mono text-[12.5px]">{row.partNo}</TableCell>
-                          <TableCell className="text-slate-700 text-[12.5px]">{row.width}</TableCell>
-                          <TableCell className="text-slate-700 text-[12.5px]">{row.length}</TableCell>
-                          <TableCell className="text-slate-700 text-[12.5px]">{row.height}</TableCell>
-                          <TableCell className="text-center">
-                            {row.mountingPlate ? <Check size={16} className="text-emerald-700 inline" /> : <span className="text-slate-300 font-bold">—</span>}
-                          </TableCell>
-                          <TableCell className="text-center">
-                            {row.dinRailT15 ? <Check size={16} className="text-emerald-700 inline" /> : <span className="text-slate-300 font-bold">—</span>}
-                          </TableCell>
-                          <TableCell className="text-center">
-                            {row.dinRailT35 ? <Check size={16} className="text-emerald-700 inline" /> : <span className="text-slate-300 font-bold">—</span>}
-                          </TableCell>
-                          <TableCell className="text-center">
-                            {row.hingesSet ? <Check size={16} className="text-emerald-700 inline" /> : <span className="text-slate-300 font-bold">—</span>}
-                          </TableCell>
-                          <TableCell className="text-center">
-                            {row.mountingBracket ? <Check size={16} className="text-emerald-700 inline" /> : <span className="text-slate-300 font-bold">—</span>}
-                          </TableCell>
-                        </TableRow>
-                      ));
-                    })()}
-                  </TableBody>
-                </Table>
-              )}
-
-              {activeTable === 'mild-steel' && (
-                <Table>
-                  <TableHeader className="bg-slate-100/90">
-                    <TableRow className="border-b-2 border-slate-200">
-                      <TableHead className="font-bold text-[#004428] text-[12px] uppercase tracking-wider py-3.5">Part No.</TableHead>
-                      <TableHead className="font-bold text-slate-700 text-[12px] uppercase tracking-wider py-3.5">Enclosure Height (H)</TableHead>
-                      <TableHead className="font-bold text-slate-700 text-[12px] uppercase tracking-wider py-3.5">Enclosure Width (W)</TableHead>
-                      <TableHead className="font-bold text-slate-700 text-[12px] uppercase tracking-wider py-3.5">Enclosure Depth (D)</TableHead>
-                      <TableHead className="font-bold text-slate-700 text-[12px] uppercase tracking-wider py-3.5">Panel Height (H)</TableHead>
-                      <TableHead className="font-bold text-slate-700 text-[12px] uppercase tracking-wider py-3.5">Panel Width (W)</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {(() => {
-                      const q = searchQuery.toLowerCase().trim();
-                      const filtered = q
-                        ? mildSteelJunctionBoxesData.filter(
-                            (r) =>
-                              r.partNo.toLowerCase().includes(q) ||
-                              r.enclosureH.includes(q) ||
-                              r.enclosureW.includes(q) ||
-                              r.enclosureD.includes(q)
-                          )
-                        : mildSteelJunctionBoxesData;
-
-                      if (filtered.length === 0) {
-                        return (
-                          <TableRow>
-                            <TableCell colSpan={6} className="text-center py-10 text-slate-500 text-[13px]">
-                              No mild steel boxes match your search "{searchQuery}".
-                            </TableCell>
-                          </TableRow>
-                        );
-                      }
-
-                      return filtered.map((row, idx) => (
-                        <TableRow key={idx} className="border-b border-slate-100 hover:bg-emerald-50/40 odd:bg-white even:bg-slate-50/50">
-                          <TableCell className="font-bold text-slate-900 font-mono text-[12.5px]">{row.partNo}</TableCell>
-                          <TableCell className="text-slate-700 text-[12.5px]">{row.enclosureH}</TableCell>
-                          <TableCell className="text-slate-700 text-[12.5px]">{row.enclosureW}</TableCell>
-                          <TableCell className="text-slate-700 text-[12.5px]">{row.enclosureD}</TableCell>
-                          <TableCell className="text-slate-700 text-[12.5px]">{row.panelH}</TableCell>
-                          <TableCell className="text-slate-700 text-[12.5px]">{row.panelW}</TableCell>
-                        </TableRow>
-                      ));
-                    })()}
-                  </TableBody>
-                </Table>
-              )}
-
-              {activeTable === 'stainless-steel' && (
-                <Table>
-                  <TableHeader className="bg-slate-100/90">
-                    <TableRow className="border-b-2 border-slate-200">
-                      <TableHead className="font-bold text-[#004428] text-[12px] uppercase tracking-wider py-3.5">Part No.</TableHead>
-                      <TableHead className="font-bold text-slate-700 text-[12px] uppercase tracking-wider py-3.5">Width (mm)</TableHead>
-                      <TableHead className="font-bold text-slate-700 text-[12px] uppercase tracking-wider py-3.5">Length (mm)</TableHead>
-                      <TableHead className="font-bold text-slate-700 text-[12px] uppercase tracking-wider py-3.5">Height (mm)</TableHead>
-                      <TableHead className="font-bold text-slate-700 text-[12px] uppercase tracking-wider py-3.5">Weight (kg approx.)</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {(() => {
-                      const q = searchQuery.toLowerCase().trim();
-                      const filtered = q
-                        ? stainlessSteelJunctionBoxesData.filter(
-                            (r) =>
-                              r.partNo.toLowerCase().includes(q) ||
-                              r.width.includes(q) ||
-                              r.length.includes(q) ||
-                              r.height.includes(q)
-                          )
-                        : stainlessSteelJunctionBoxesData;
-
-                      if (filtered.length === 0) {
-                        return (
-                          <TableRow>
-                            <TableCell colSpan={5} className="text-center py-10 text-slate-500 text-[13px]">
-                              No stainless steel enclosures match your search "{searchQuery}".
-                            </TableCell>
-                          </TableRow>
-                        );
-                      }
-
-                      return filtered.map((row, idx) => (
-                        <TableRow key={idx} className="border-b border-slate-100 hover:bg-emerald-50/40 odd:bg-white even:bg-slate-50/50">
-                          <TableCell className="font-bold text-slate-900 font-mono text-[12.5px]">{row.partNo}</TableCell>
-                          <TableCell className="text-slate-700 text-[12.5px]">{row.width}</TableCell>
-                          <TableCell className="text-slate-700 text-[12.5px]">{row.length}</TableCell>
-                          <TableCell className="text-slate-700 text-[12.5px]">{row.height}</TableCell>
-                          <TableCell className="text-slate-700 text-[12.5px]">{row.weight}</TableCell>
-                        </TableRow>
-                      ));
-                    })()}
-                  </TableBody>
-                </Table>
-              )}
-
-              {activeTable === 'push-button' && (
-                <Table>
-                  <TableHeader className="bg-slate-100/90">
-                    <TableRow className="border-b-2 border-slate-200">
-                      <TableHead className="font-bold text-[#004428] text-[12px] uppercase tracking-wider py-3.5">Part No.</TableHead>
-                      <TableHead className="font-bold text-slate-700 text-[12px] uppercase tracking-wider py-3.5">Holes / Cut-Outs</TableHead>
-                      <TableHead className="font-bold text-slate-700 text-[12px] uppercase tracking-wider py-3.5">Width (mm)</TableHead>
-                      <TableHead className="font-bold text-slate-700 text-[12px] uppercase tracking-wider py-3.5">Length (mm)</TableHead>
-                      <TableHead className="font-bold text-slate-700 text-[12px] uppercase tracking-wider py-3.5">Height (mm)</TableHead>
-                      <TableHead className="font-bold text-slate-700 text-[12px] uppercase tracking-wider py-3.5">Weight (kg approx.)</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {(() => {
-                      const q = searchQuery.toLowerCase().trim();
-                      const filtered = q
-                        ? pushButtonPanelsData.filter(
-                            (r) =>
-                              r.partNo.toLowerCase().includes(q) ||
-                              r.holes.includes(q) ||
-                              r.width.includes(q) ||
-                              r.length.includes(q)
-                          )
-                        : pushButtonPanelsData;
-
-                      if (filtered.length === 0) {
-                        return (
-                          <TableRow>
-                            <TableCell colSpan={6} className="text-center py-10 text-slate-500 text-[13px]">
-                              No push button panels match your search "{searchQuery}".
-                            </TableCell>
-                          </TableRow>
-                        );
-                      }
-
-                      return filtered.map((row, idx) => (
-                        <TableRow key={idx} className="border-b border-slate-100 hover:bg-emerald-50/40 odd:bg-white even:bg-slate-50/50">
-                          <TableCell className="font-bold text-slate-900 font-mono text-[12.5px]">{row.partNo}</TableCell>
-                          <TableCell className="font-bold text-emerald-800 text-[12.5px]">{row.holes} {row.holes === '1' ? 'Hole (22.5mm)' : 'Holes (22.5mm)'}</TableCell>
-                          <TableCell className="text-slate-700 text-[12.5px]">{row.width}</TableCell>
-                          <TableCell className="text-slate-700 text-[12.5px]">{row.length}</TableCell>
-                          <TableCell className="text-slate-700 text-[12.5px]">{row.height}</TableCell>
-                          <TableCell className="text-slate-700 text-[12.5px]">{row.weight}</TableCell>
-                        </TableRow>
-                      ));
-                    })()}
-                  </TableBody>
-                </Table>
-              )}
-            </div>
-          </div>
-
-          {/* ── Redirecting Navigation Bar Below Table (Matching Client Design) ── */}
-          <div className="mt-8 p-6 sm:p-7 bg-[#0b1310] rounded-2xl border border-white/10 shadow-lg flex flex-col md:flex-row items-center justify-between gap-5">
-            <div>
-              <span className="text-[11px] font-bold tracking-widest uppercase text-emerald-400 block mb-1">
-                FAST DIRECT INQUIRY &middot; NAEPL LINK-BOX
-              </span>
-              <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
-                Need Custom Machining, Holes, or Terminal Assembly?
-              </h3>
-              <p className="text-[13px] text-white/70 mt-1 max-w-[560px]">
-                We supply pre-drilled enclosures, terminal blocks, DIN rails, and IP68 cable glands as pre-assembled kits.
-              </p>
-            </div>
-
-            <div className="flex flex-wrap items-center justify-center gap-3 shrink-0 w-full md:w-auto">
-              <a
-                href="#our-range"
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#1b231f] hover:bg-[#25322c] text-white/90 hover:text-white font-medium text-[13px] transition-all border border-white/15 cursor-pointer"
-              >
-                <ArrowLeft size={15} />
-                <span>All Enclosures Range</span>
-              </a>
+          <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
+            {linkBoxCatalogItems.map((item) => (
               <Link
-                href="/contact?subject=RFQ%20for%20Link-Box%20Enclosures"
-                className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-[#004d2e] hover:bg-[#005f38] text-white font-bold text-[13px] uppercase tracking-wider transition-all shadow-md border border-emerald-500/40"
+                key={item.id}
+                id={item.id}
+                href={item.link}
+                className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)] max-w-[380px] group scroll-mt-24 bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-12px_rgba(15,23,42,0.12)] hover:border-slate-300 block no-underline"
               >
-                <span>REQUEST RFQ</span>
-                <ArrowRight size={15} />
+                <div className="relative h-[190px] sm:h-[220px] flex items-center justify-center overflow-hidden bg-slate-50 p-4">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+
+                <div className="p-5 sm:p-6 flex flex-col flex-1">
+                  <div className="text-[10.5px] sm:text-[11px] font-bold tracking-wider text-slate-400 uppercase mb-1.5">
+                    {item.category}
+                  </div>
+                  <h3 className="text-[19px] sm:text-[21px] font-bold text-slate-900 tracking-tight m-0 mb-3 group-hover:text-[#004428] transition-colors">
+                    {item.title}
+                  </h3>
+                  <div className="w-7 h-[2px] bg-slate-200 mb-6 transition-all duration-300 group-hover:w-11 group-hover:bg-[#8c2442]" />
+
+                  <div className="mt-auto inline-flex items-center gap-2 text-[12px] sm:text-[12.5px] font-bold tracking-wider text-[#8c2442] uppercase transition-all duration-200 group-hover:gap-3">
+                    <span>VIEW DETAILS</span>
+                    <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" />
+                  </div>
+                </div>
               </Link>
-            </div>
+            ))}
           </div>
         </div>
       </section>
