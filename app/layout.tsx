@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   description:
     "ISO 9001:2015 certified manufacturer of precision engineered components, stainless steel cable ties, cable cleats, link boxes, CNC machined parts, and sheet metal press components.",
   icons: {
-    icon: "/assets/logo_naepl.webp",
+    icon: "/assets/favicon.ico",
   },
 }
 
